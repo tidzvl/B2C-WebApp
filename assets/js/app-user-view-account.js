@@ -4,6 +4,52 @@
 
 $(function () {
   'use strict';
+  // const data_user = JSON.parse(localStorage.getItem('data_user'));
+  const data_user = {
+    "data": [
+      {
+        "user_id" : "2213491",
+        "name" : "Tin Dep Trai",
+        "status" : "Đã xác thực",
+        "sex" : "Nam",
+        "phone" : [
+          "0353431537"
+        ],
+        "email" : "tin.nguyentidz1476@hcmut.edu.vn",
+        "address" : [
+          "440/40/5 Thống Nhất, P. 16, Gò Vấp, TP. HCM",
+          "46 Bạch Đằng, Tân Bình, TP. HCM"
+        ]
+      }
+    ]
+  }
+  //get sum of order and points
+  const sum_of_order = 13;
+  const sum_of_points = 146;
+
+  //render infomation
+
+  // document.querySelectorAll('.name').innerHTML = data_user.data[0].name;
+  document.querySelectorAll('.name').forEach((element, index) => { 
+    element.innerHTML = data_user.data[0].name;
+  });
+  document.querySelector('.makhachhang').innerHTML = data_user.data[0].user_id;
+  document.querySelector('.verified').innerHTML = data_user.data[0].status;
+  document.querySelector('.sex').innerHTML = data_user.data[0].sex;
+  document.querySelector('.phone').innerHTML = data_user.data[0].phone;
+  document.querySelector('.email').innerHTML = data_user.data[0].email;
+  document.querySelector('.num-of-invoice').innerHTML = sum_of_order;
+  document.querySelector('.points').innerHTML = sum_of_points;
+
+  //address
+  document.querySelectorAll('.address').forEach((element, index) => { 
+    if (data_user.data[0].address[index]) { 
+      element.innerHTML = data_user.data[0].address[index];
+    }
+  });
+
+  //!render infomation
+
 
   // Variable declaration for table
   var dt_project_table = $('.datatable-project'),
