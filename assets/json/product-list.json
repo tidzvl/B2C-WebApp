@@ -1,0 +1,49 @@
+{
+    "data": [
+      {
+        "product_id": "P1337",
+        "name": "Google Home",
+        "version": "White",
+        "price": "499.000",
+        "origin": "Google",
+        "image": [
+            "1.png",
+            "google-home-white-2.jpg"
+        ],
+        "count_in_stock": "23",
+        "count_sold": "0",
+        "rating": "4.5",
+        "description": "This is the Google Home White model. It is a white model with a white frame and a white screen."
+      },
+      {
+        "product_id": "P2437",
+        "name": "Iphone 14 Promax",
+        "version": "64GB, Black",
+        "price": "49.999.999",
+        "origin": "Apple",
+        "image": [
+            "2.png",
+            "iphone-2.jpg"
+        ],
+        "count_in_stock": "11",
+        "count_sold": "1",
+        "rating": "3",
+        "description": "This is the Iphone 14 Promax 64GB, Black model. It is a black model with a black frame and a black screen."
+      },
+      {
+        "product_id": "P2223",
+        "name": "One Plus",
+        "version": "White",
+        "price": "19.999.999",
+        "origin": "Samsung",
+        "image": [
+            "oneplus.png",
+            "iphone-2.jpg"
+        ],
+        "count_in_stock": "0",
+        "count_sold": "1",
+        "rating": "0",
+        "description": "Samsung like shit."
+      }
+    ]
+}

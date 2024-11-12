@@ -1,0 +1,18 @@
+{
+    "data": [
+      {
+        "user_id" : "2213491",
+        "name" : "Tin Dep Trai",
+        "status" : "Đã xác thực",
+        "sex" : "Nam",
+        "phone" : [
+          "0353431537"
+        ],
+        "email" : "tin.nguyentidz1476@hcmut.edu.vn",
+        "address" : [
+          "440/40/5 Thống Nhất, P. 16, Gò Vấp, TP. HCM",
+          "46 Bạch Đằng, Tân Bình, TP. HCM"
+        ]
+      }
+    ]
+  }

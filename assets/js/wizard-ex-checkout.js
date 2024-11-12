@@ -6,22 +6,200 @@
 
 // rateyo (jquery)
 $(function () {
-  var readOnlyRating = $('.read-only-ratings');
+  // var readOnlyRating = $('.read-only-ratings');
+
+  var products;
+  $.getJSON('/assets/json/product-list.json')
+  .then(function(data) {
+    products = data.data;
+    $('.num-of-item').html(products.length);
+    var productsList = document.querySelector('.products_list');
+    //loop
+    products.forEach(function(product) {
+      var productSpan = document.createElement('li');
+      productSpan.className = 'list-group-item p-4';
+      var status;
+      var color;
+      if (product.count_in_stock > 0) {
+        status = 'In Stock';
+        color = 'success';
+      } else {
+        status = 'Out of Stock';
+        color = 'danger';
+      }
+      // Star rating
+      productSpan.innerHTML =
+      `<div class="d-flex gap-3">
+              <div class="flex-shrink-0">
+                  <img src="../../assets/img/products/${product.image[0]}"
+                      alt="${product.image[0]}" class="w-px-100" />
+              </div>
+              <div class="flex-grow-1">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <h6 class="me-3">
+                              <a href="javascript:void(0)"
+                                  class="text-body">${product.name} (${product.version})</a>
+                          </h6>
+                          <div class="text-muted mb-1 d-flex flex-wrap">
+                              <span class="me-1">Sold by:</span>
+                              <a href="javascript:void(0)"
+                                  class="me-1">${product.origin}</a>
+                              <span class="badge bg-label-${color}">${status}</span>
+                          </div>
+                          <div class="read-only-ratings mb-2"
+                              data-rateyo-read-only="true"></div>
+                          <input type="number"
+                              class="form-control form-control-sm w-px-75"
+                              value="1" min="1" max="5" />
+                      </div>
+                      <div class="col-md-4">
+                          <div class="text-md-end">
+                              <button type="button"
+                                  class="btn-close btn-pinned"
+                                  aria-label="Close"></button>
+                              <div class="my-2 my-md-4">
+                                  <span
+                                      class="text-primary price-product">${product.price} VNĐ</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>`;
+      productsList.appendChild(productSpan);
+      var readOnlyRating = $('.read-only-ratings');
+      if (readOnlyRating) {
+        readOnlyRating.rateYo({
+          rtl: isRtl,
+          rating: product.rating,
+          starWidth: '20px'
+        });
+      }
+    });
+    var productsListCheckout = document.querySelector('.products_list_checkout');
+    products.forEach(function(product) {
+      var productSpan = document.createElement('li');
+      productSpan.className = 'list-group-item';
+      var status;
+      var color;
+      if (product.count_in_stock > 0) {
+        status = 'In Stock';
+        color = 'success';
+      } else {
+        status = 'Out of Stock';
+        color = 'danger';
+      }
+      // Star rating
+      productSpan.innerHTML =`
+      <div class="d-flex gap-3">
+        <div class="flex-shrink-0">
+            <img src="../../assets/img/products/${product.image[0]}"
+                alt="${product.name}" class="w-px-75" />
+        </div>
+        <div class="flex-grow-1">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="javascript:void(0)" class="text-body">
+                        <h6>${product.name} (${product.version})</h6>
+                    </a>
+                    <div class="text-muted mb-1 d-flex flex-wrap">
+                        <span class="me-1">Sold by:</span>
+                        <a href="javascript:void(0)"
+                            class="me-1">${product.origin}</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-md-end">
+                        <div class="my-2 my-lg-4">
+                            <span
+                                class="text-primary">${product.price} VNĐ</span><s
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      `;
+      productsListCheckout.appendChild(productSpan);
+      var readOnlyRating = $('.read-only-ratings');
+      if (readOnlyRating) {
+        readOnlyRating.rateYo({
+          rtl: isRtl,
+          rating: product.rating,
+          starWidth: '20px'
+        });
+      }
+    });
+    //--!loop
+
+    //calculating price
+    var totalPrice = 0;
+
+    productsList.querySelectorAll(".price-product").forEach(function (element) {
+      var price = parseInt(element.innerHTML.replace(/[^0-9]/g, ''));
+      console.log(price);
+      totalPrice += price;
+    });
+    var totalPrice1 = totalPrice.toLocaleString('vi-VN') + ' VNĐ';
+    console.log(totalPrice1);
+    $('.total-price').html(totalPrice1);
+    var discount = 200000;
+    $('.total-discount').html(discount.toLocaleString('vi-VN') + ' VNĐ');
+    var price_been_discount = totalPrice - discount;
+    $('.total-all').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
+    $('.total-pay').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
+    //--!calculating price
+  })
+  .fail(function(xhr, status, error) {
+    console.error(error);
+  });
+
+  var beenget = false;
+  var pay_origin;
+  var ngayHienTai = new Date();
+  var ngaySauNNgay;
+  $('.time').html(ngayHienTai.toLocaleString('vi-VN'));
+  $('.form-check-input').on('click', function() {
+    if(!beenget){
+      beenget = true;
+      pay_origin = parseInt($('.total-pay').html().replace(/[^0-9]/g, ''));
+    }
+    var paypay = pay_origin;
+    var shipPrice = 0;
+    if ($(this).attr('id') === 'customRadioDelivery1') {
+      shipPrice = 0;
+      var shipPriceFree = '<span class="badge bg-label-success">Free</span>';
+      $('.total-ship').html(shipPriceFree);
+      ngaySauNNgay = new Date(ngayHienTai.getTime() + 7 * 24 * 60 * 60 * 1000);
+    } else if ($(this).attr('id') === 'customRadioDelivery2') {
+      shipPrice = 10000; 
+      $('.total-ship').html(shipPrice.toLocaleString('vi-VN') + ' VNĐ');
+      ngaySauNNgay = new Date(ngayHienTai.getTime() + 3 * 24 * 60 * 60 * 1000);
+    } else if ($(this).attr('id') === 'customRadioDelivery3') {
+      shipPrice = 1500000;
+      $('.total-ship').html(shipPrice.toLocaleString('vi-VN') + ' VNĐ');
+      ngaySauNNgay = new Date(ngayHienTai.getTime() + 30 * 60 * 1000);
+    }
+    var update_pay = paypay+shipPrice;
+    $('.total-pay').html(update_pay.toLocaleString('vi-VN') + ' VNĐ');
+    $('.ship-date').html(ngaySauNNgay.toLocaleDateString('vi-VN'));
+  });
+
 
   // Star rating
-  if (readOnlyRating) {
-    readOnlyRating.rateYo({
-      rtl: isRtl,
-      rating: 4,
-      starWidth: '20px'
-    });
-  }
+  // if (readOnlyRating) {
+  //   readOnlyRating.rateYo({
+  //     rtl: isRtl,
+  //     rating: 0,
+  //     starWidth: '20px'
+  //   });
+  // }
 });
 
 (function () {
   // Init custom option check
   window.Helpers.initCustomOptionCheck();
-
   // libs
   const creditCardMask = document.querySelector('.credit-card-mask'),
     expiryDateMask = document.querySelector('.expiry-date-mask'),

@@ -303,95 +303,11 @@
                                             <!-- Cart left -->
                                             <div class="col-xl-8 mb-3 mb-xl-0">
                                                 <!-- Shopping bag -->
-                                                <h5>Hàng hóa (<span class="total-item">Loading number...</span> Items)
+                                                <h5>Hàng hóa (<span class="total-item num-of-item">Loading number...</span> Items)
                                                 </h5>
                                                 <ul class="list-group mb-3">
-                                                    <li class="list-group-item p-4">
-                                                        <div class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/1.png"
-                                                                    alt="google home" class="w-px-100" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <h6 class="me-3">
-                                                                            <a href="javascript:void(0)"
-                                                                                class="text-body">Google - Google Home -
-                                                                                White</a>
-                                                                        </h6>
-                                                                        <div class="text-muted mb-1 d-flex flex-wrap">
-                                                                            <span class="me-1">Sold by:</span>
-                                                                            <a href="javascript:void(0)"
-                                                                                class="me-1">Apple</a>
-                                                                            <span class="badge bg-label-success">In
-                                                                                Stock</span>
-                                                                        </div>
-                                                                        <div class="read-only-ratings mb-2"
-                                                                            data-rateyo-read-only="true"></div>
-                                                                        <input type="number"
-                                                                            class="form-control form-control-sm w-px-75"
-                                                                            value="1" min="1" max="5" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="text-md-end">
-                                                                            <button type="button"
-                                                                                class="btn-close btn-pinned"
-                                                                                aria-label="Close"></button>
-                                                                            <div class="my-2 my-md-4">
-                                                                                <span
-                                                                                    class="text-primary">$299/</span><s
-                                                                                    class="text-muted">$359</s>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item p-4">
-                                                        <div class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/2.png"
-                                                                    alt="google home" class="w-px-100" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <h6 class="me-3">
-                                                                            <a href="javascript:void(0)"
-                                                                                class="text-body">Apple iPhone 11 (64GB,
-                                                                                Black)</a>
-                                                                        </h6>
-                                                                        <div class="text-muted mb-1 d-flex flex-wrap">
-                                                                            <span class="me-1">Sold by:</span>
-                                                                            <a href="javascript:void(0)"
-                                                                                class="me-1">Apple</a>
-                                                                            <span class="badge bg-label-success">In
-                                                                                Stock</span>
-                                                                        </div>
-                                                                        <div class="read-only-ratings mb-2"
-                                                                            data-rateyo-read-only="true"></div>
-                                                                        <input type="number"
-                                                                            class="form-control form-control-sm w-px-75"
-                                                                            value="1" min="1" max="5" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="text-md-end">
-                                                                            <button type="button"
-                                                                                class="btn-close btn-pinned"
-                                                                                aria-label="Close"></button>
-                                                                            <div class="my-2 my-md-4">
-                                                                                <span
-                                                                                    class="text-primary">$299/</span><s
-                                                                                    class="text-muted">$359</s>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    <!-- <li class="list-group-item p-4"></li> -->
+                                                    <span class="products_list"></span>
                                                 </ul>
                                             </div>
 
@@ -420,24 +336,22 @@
                                                     <h6>Thanh toán</h6>
                                                     <dl class="row mb-0">
                                                         <dt class="col-6 fw-normal">Giá toàn bộ sản phẩm</dt>
-                                                        <dd class="col-6 text-end">$1198.00</dd>
+                                                        <dd class="col-6 text-end total-price"></dd>
 
                                                         <dt class="col-6 fw-normal">Mã giảm giá áp dụng</dt>
-                                                        <dd class="col-6 text-success text-end">-$98.00</dd>
+                                                        <dd class="col-6 text-success text-end total-discount"></dd>
 
                                                         <dt class="col-6 fw-normal">Tổng hóa đơn</dt>
-                                                        <dd class="col-6 text-end">$1100.00</dd>
+                                                        <dd class="col-6 text-end total-all"></dd>
 
-                                                        <dt class="col-6 fw-normal">Phí vận chuyển</dt>
-                                                        <dd class="col-6 text-end">
-                                                            <s>$5.00</s> <span
-                                                                class="badge bg-label-success">Free</span>
+                                                        <!-- <dt class="col-6 fw-normal">Phí vận chuyển</dt>
+                                                        <dd class="col-6 text-end total-ship"> -->
                                                         </dd>
                                                     </dl>
                                                     <hr class="mx-n3 mt-0" />
                                                     <dl class="row mb-0">
                                                         <dt class="col-6">Phải trả</dt>
-                                                        <dd class="col-6 fw-medium text-end mb-0">$1100.00</dd>
+                                                        <dd class="col-6 fw-medium text-end mb-0 total-pay"></dd>
                                                     </dl>
                                                 </div>
                                                 <div class="d-grid">
@@ -543,7 +457,7 @@
                                                                     <i class="bx bx-star"></i>
                                                                     <span class="custom-option-title">Giao nhanh</span>
                                                                     <span
-                                                                        class="badge bg-label-secondary btn-pinned">$10</span>
+                                                                        class="badge bg-label-secondary btn-pinned">30.000 VNĐ</span>
                                                                     <small>Nhận hàng trong 3-4 ngày.</small>
                                                                 </span>
                                                                 <input name="customRadioIcon" class="form-check-input"
@@ -560,7 +474,7 @@
                                                                     <i class="bx bx-rocket"></i>
                                                                     <span class="custom-option-title">Cháy máy</span>
                                                                     <span
-                                                                        class="badge bg-label-secondary btn-pinned">$15</span>
+                                                                        class="badge bg-label-secondary btn-pinned">1.500.000 VNĐ</span>
                                                                     <small>Bắn bluetooth qua phút mốt.</small>
                                                                 </span>
                                                                 <input name="customRadioIcon" class="form-check-input"
@@ -578,32 +492,7 @@
                                                     <h6>Ngày giao <small class="text-muted">(dự kiến)</small></h6>
                                                     <ul class="list-unstyled">
                                                         <li class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/1.png"
-                                                                    alt="google home" class="w-px-50" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <p class="mb-0">
-                                                                    <a class="text-body"
-                                                                        href="javascript:void(0)">Google - Google Home -
-                                                                        White</a>
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/2.png"
-                                                                    alt="google home" class="w-px-50" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <p class="mb-0">
-                                                                    <a class="text-body" href="javascript:void(0)">Apple
-                                                                        iPhone 11 (64GB, Black)</a>
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-flex gap-3">
-                                                            <p class="fw-medium">20th Nov 2021</p>
+                                                            <p class="fw-medium ship-date"></p>
                                                         </li>
                                                     </ul>
 
@@ -613,18 +502,18 @@
                                                     <h6>Thanh toán</h6>
                                                     <dl class="row mb-0">
                                                         <dt class="col-6 fw-normal">Tổng hóa đơn</dt>
-                                                        <dd class="col-6 text-end">$1100.00</dd>
+                                                        <dd class="col-6 text-end total-all"></dd>
 
                                                         <dt class="col-6 fw-normal">Phí vận chuyển</dt>
-                                                        <dd class="col-6 text-end">
-                                                            <s>$5.00</s> <span
+                                                        <dd class="col-6 text-end total-ship">
+                                                            <span
                                                                 class="badge bg-label-success">Free</span>
                                                         </dd>
                                                     </dl>
                                                     <hr class="mx-n3" />
                                                     <dl class="row mb-0">
                                                         <dt class="col-6">Phải trả</dt>
-                                                        <dd class="col-6 fw-medium text-end mb-0">$1100.00</dd>
+                                                        <dd class="col-6 fw-medium text-end mb-0 total-pay"></dd>
                                                     </dl>
                                                 </div>
                                                 <div class="d-grid">
@@ -691,7 +580,7 @@
                                                                             class="form-control credit-card-mask"
                                                                             type="text"
                                                                             placeholder="1356 3215 6548 7898"
-                                                                            aria-describedby="paymentCard2" />
+                                                                            aria-describedby="paymentCard2" required />
                                                                         <span
                                                                             class="input-group-text cursor-pointer p-1"
                                                                             id="paymentCard2"><span
@@ -702,14 +591,14 @@
                                                                     <label class="form-label"
                                                                         for="paymentCardName">Họ và tên</label>
                                                                     <input type="text" id="paymentCardName"
-                                                                        class="form-control" placeholder="Tin Dep Trai" />
+                                                                        class="form-control" placeholder="Tin Dep Trai" required />
                                                                 </div>
                                                                 <div class="col-6 col-md-3">
                                                                     <label class="form-label"
                                                                         for="paymentCardExpiryDate">Ngày hết hạn</label>
                                                                     <input type="text" id="paymentCardExpiryDate"
                                                                         class="form-control expiry-date-mask"
-                                                                        placeholder="MM/YY" />
+                                                                        placeholder="MM/YY" required />
                                                                 </div>
                                                                 <div class="col-6 col-md-3">
                                                                     <label class="form-label" for="paymentCardCvv">CVV
@@ -717,7 +606,7 @@
                                                                     <div class="input-group input-group-merge">
                                                                         <input type="text" id="paymentCardCvv"
                                                                             class="form-control cvv-code-mask"
-                                                                            maxlength="3" placeholder="654" />
+                                                                            maxlength="3" placeholder="654" required />
                                                                         <span class="input-group-text cursor-pointer"
                                                                             id="paymentCardCvv2"><i
                                                                                 class="bx bx-help-circle text-muted"
@@ -761,20 +650,20 @@
                                                 <div class="border rounded p-3">
                                                     <!-- Price Details -->
                                                     <h6>Thanh toán</h6>
-                                                    <dl class="row mb-0">
+                                                    <!-- <dl class="row mb-0">
                                                         <dt class="col-6 fw-normal">Tổng hóa đơn</dt>
-                                                        <dd class="col-6 text-end">$1100.00</dd>
+                                                        <dd class="col-6 text-end total-pay"></dd>
 
                                                         <dt class="col-6 fw-normal">Phí vận chuyển</dt>
                                                         <dd class="col-6 text-end">
-                                                            <s>$5.00</s> <span
+                                                            <s></s> <span
                                                                 class="badge bg-label-success">Free</span>
                                                         </dd>
-                                                    </dl>
+                                                    </dl> -->
                                                     <hr class="mx-n3 mt-1" />
                                                     <dl class="row">
                                                         <dt class="col-6">Phải trả</dt>
-                                                        <dd class="col-6 fw-medium text-end mb-0">$1100.00</dd>
+                                                        <dd class="col-6 fw-medium text-end mb-0 total-pay"></dd>
 
                                                         <dt class="col-6">Giao đến:</dt>
                                                         <dd class="col-6 fw-medium text-end mb-0">
@@ -808,7 +697,7 @@
                                                 </p>
                                                 <p>
                                                     <span class="fw-medium"><i class="bx bx-time-five"></i> Thời gian đặt:
-                                                    </span> 23:56 11/07/2024
+                                                    </span> <span class = "time"></span>
                                                 </p>
                                             </div>
 
@@ -816,72 +705,7 @@
                                             <!-- Confirmation items -->
                                             <div class="col-xl-9 mb-3 mb-xl-0">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                        <div class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/1.png"
-                                                                    alt="google home" class="w-px-75" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <a href="javascript:void(0)" class="text-body">
-                                                                            <h6>Google - Google Home - White</h6>
-                                                                        </a>
-                                                                        <div class="text-muted mb-1 d-flex flex-wrap">
-                                                                            <span class="me-1">Sold by:</span>
-                                                                            <a href="javascript:void(0)"
-                                                                                class="me-1">Apple</a>
-                                                                            <span class="badge bg-label-success">In
-                                                                                Stock</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="text-md-end">
-                                                                            <div class="my-2 my-lg-4">
-                                                                                <span
-                                                                                    class="text-primary">$299/</span><s
-                                                                                    class="text-muted">$359</s>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <div class="d-flex gap-3">
-                                                            <div class="flex-shrink-0">
-                                                                <img src="../../assets/img/products/2.png"
-                                                                    alt="google home" class="w-px-75" />
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <a href="javascript:void(0)" class="text-body">
-                                                                            <h6>Apple iPhone 11 (64GB, Black)</h6>
-                                                                        </a>
-                                                                        <div class="text-muted mb-1 d-flex flex-wrap">
-                                                                            <span class="me-1">Sold by:</span>
-                                                                            <a href="javascript:void(0)"
-                                                                                class="me-1">Apple</a>
-                                                                            <span class="badge bg-label-success">In
-                                                                                Stock</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="text-md-end">
-                                                                            <div class="my-2 my-lg-4">
-                                                                                <span
-                                                                                    class="text-primary">$299/</span><s
-                                                                                    class="text-muted">$359</s>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    <span class="products_list_checkout"></span>
                                                 </ul>
                                             </div>
                                             <!-- Confirmation total -->
@@ -891,18 +715,17 @@
                                                     <h6>Thanh toán</h6>
                                                     <dl class="row mb-0">
                                                         <dt class="col-6 fw-normal">Tổng hóa đơn</dt>
-                                                        <dd class="col-6 text-end">$1100.00</dd>
+                                                        <dd class="col-6 text-end total-price"></dd>
 
                                                         <dt class="col-6 fw-normal">Phí vận chuyển</dt>
-                                                        <dd class="col-6 text-end">
-                                                            <s>$5.00</s> <span
+                                                        <dd class="col-6 text-end total-ship"><span
                                                                 class="badge bg-label-success">Free</span>
                                                         </dd>
                                                     </dl>
                                                     <hr class="mx-n3 mt-1" />
                                                     <dl class="row mb-0">
                                                         <dt class="col-6">Phải trả</dt>
-                                                        <dd class="col-6 fw-medium text-end mb-0">$1100.00</dd>
+                                                        <dd class="col-6 fw-medium text-end mb-0 total-pay"></dd>
                                                     </dl>
                                                 </div>
                                             </div>
