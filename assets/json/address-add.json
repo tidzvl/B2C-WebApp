@@ -1,0 +1,19 @@
+{
+    "data": [
+      {
+        "address":[
+            {
+                "0": "Home",
+                "1": "Office"
+            }
+        ],
+        "phone": [
+            {
+                "0": "Home",
+                "1": "Office"
+            }
+        ]
+      }
+    ],
+    "Day_chi_la_config_address": true
+  }

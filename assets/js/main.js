@@ -30,7 +30,7 @@ if (document.getElementById('layout-menu')) {
     document.querySelector('.makhachhang').innerHTML = data_user.data[0].user_id;
     document.querySelector('.verified').innerHTML = data_user.data[0].status;
     document.querySelector('.sex').innerHTML = data_user.data[0].sex;
-    document.querySelector('.phone').innerHTML = data_user.data[0].phone;
+    document.querySelector('.phone').innerHTML = data_user.data[0].phone[0];
     document.querySelector('.email').innerHTML = data_user.data[0].email;
     //address
     document.querySelectorAll('.address').forEach((element, index) => { 

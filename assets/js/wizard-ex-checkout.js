@@ -6,10 +6,12 @@
 
 // rateyo (jquery)
 $(function () {
-  // var readOnlyRating = $('.read-only-ratings');
 
+
+  //jquery page 1 (gio hang)
   var products;
-  $.getJSON('/assets/json/product-list.json')
+  //ajax call
+  $.getJSON('/assets/json/product-list.json') //from database in
   .then(function(data) {
     products = data.data;
     $('.num-of-item').html(products.length);
@@ -20,6 +22,7 @@ $(function () {
       productSpan.className = 'list-group-item p-4';
       var status;
       var color;
+      //check stock
       if (product.count_in_stock > 0) {
         status = 'In Stock';
         color = 'success';
@@ -27,7 +30,6 @@ $(function () {
         status = 'Out of Stock';
         color = 'danger';
       }
-      // Star rating
       productSpan.innerHTML =
       `<div class="d-flex gap-3">
               <div class="flex-shrink-0">
@@ -68,6 +70,7 @@ $(function () {
               </div>
           </div>`;
       productsList.appendChild(productSpan);
+      //add star rating
       var readOnlyRating = $('.read-only-ratings');
       if (readOnlyRating) {
         readOnlyRating.rateYo({
@@ -90,7 +93,6 @@ $(function () {
         status = 'Out of Stock';
         color = 'danger';
       }
-      // Star rating
       productSpan.innerHTML =`
       <div class="d-flex gap-3">
         <div class="flex-shrink-0">
@@ -154,7 +156,9 @@ $(function () {
   .fail(function(xhr, status, error) {
     console.error(error);
   });
+  //--!end gio hang
 
+  //delivery
   var beenget = false;
   var pay_origin;
   var ngayHienTai = new Date();
@@ -185,16 +189,62 @@ $(function () {
     $('.total-pay').html(update_pay.toLocaleString('vi-VN') + ' VNĐ');
     $('.ship-date').html(ngaySauNNgay.toLocaleDateString('vi-VN'));
   });
+  //!--delivery
+
+  //render address people
+  $.getJSON('/assets/json/users-list.json') //from database in
+  .then(function(data) {
+    var person = data.data[0];
+    var address = data.data[0].address;
+    $('.email').html(person.email);
+    // console.log(address.length);
+    var addressList = document.querySelector('.address-list');
+    var config, config2, have;
+    address.forEach(function (element, index) {
+      var addressSpan = document.createElement('div');
+      addressSpan.className = 'col-md';
+      //home or office?
+      if(index === 0){
+        config = "Home";
+        config2 = "primary";
+        have = 'checked=""';
+      }else{
+        config = "Office";
+        config2 = "success";
+        have = '';
+      }
+      //--end
+      addressSpan.innerHTML = `
+        <div class="form-check custom-option custom-option-basic checked">
+          <label class="form-check-label custom-option-content"
+              for="customRadioAddress${index}">
+              <input name="customRadioTemp" class="form-check-input"
+                  type="radio" value="" id="customRadioAddress${index}" ${have}/>
+              <span class="custom-option-header">
+                  <span class="fw-medium">${config}</span>
+                  <span class="badge bg-label-${config2}">${config}</span>
+              </span>
+              <span class="custom-option-body">
+                  <small>${element}<br />
+                      Mobile : ${person.phone[index]} </small>
+                  <span class="my-3 border-bottom d-block"></span>
+                  <span class="d-flex">
+                      <a class="me-2"
+                          href="javascript:void(0)">Edit</a>
+                      <a href="javascript:void(0)">Remove</a>
+                  </span>
+              </span>
+          </label>
+      </div>
+      `
+      addressList.appendChild(addressSpan);
+    })
+  })
+  .fail(function(xhr, status, error) {
+    console.error(error + ' in render address people (get)');
+  });
 
 
-  // Star rating
-  // if (readOnlyRating) {
-  //   readOnlyRating.rateYo({
-  //     rtl: isRtl,
-  //     rating: 0,
-  //     starWidth: '20px'
-  //   });
-  // }
 });
 
 (function () {
@@ -248,14 +298,17 @@ $(function () {
     const wizardCheckoutFormStep2 = wizardCheckoutForm.querySelector('#checkout-address');
     const wizardCheckoutFormStep3 = wizardCheckoutForm.querySelector('#checkout-payment');
     const wizardCheckoutFormStep4 = wizardCheckoutForm.querySelector('#checkout-confirmation');
+
+
+    
     // Wizard next prev button
     const wizardCheckoutNext = [].slice.call(wizardCheckoutForm.querySelectorAll('.btn-next'));
     const wizardCheckoutPrev = [].slice.call(wizardCheckoutForm.querySelectorAll('.btn-prev'));
-
+    
     let validationStepper = new Stepper(wizardCheckout, {
       linear: false
     });
-
+    
     // Cart
     const FormValidation1 = FormValidation.formValidation(wizardCheckoutFormStep1, {
       fields: {
@@ -323,6 +376,7 @@ $(function () {
     const FormValidation4 = FormValidation.formValidation(wizardCheckoutFormStep4, {
       fields: {
         // * Validate the fields here based on your requirements
+
       },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
@@ -357,6 +411,7 @@ $(function () {
 
           case 2:
             FormValidation3.validate();
+            document.querySelector('.wait-to-enable').disabled = false;
             break;
 
           case 3:

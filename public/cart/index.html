@@ -283,7 +283,7 @@
                                     <i class="bx bx-chevron-right"></i>
                                 </div>
                                 <div class="step" data-target="#checkout-confirmation">
-                                    <button type="button" class="step-trigger">
+                                    <button type="button" class="step-trigger wait-to-enable" disabled>
                                         <span class="bs-stepper-icon">
                                             <svg viewBox="0 0 58 54">
                                                 <use
@@ -368,58 +368,7 @@
                                             <div class="col-xl-9 mb-3 mb-xl-0">
                                                 <!-- Select address -->
                                                 <p>Chọn địa chỉ nhận hàng</p>
-                                                <div class="row mb-3">
-                                                    <div class="col-md mb-md-0 mb-2">
-                                                        <div
-                                                            class="form-check custom-option custom-option-basic checked">
-                                                            <label class="form-check-label custom-option-content"
-                                                                for="customRadioAddress1">
-                                                                <input name="customRadioTemp" class="form-check-input"
-                                                                    type="radio" value="" id="customRadioAddress1"
-                                                                    checked="" />
-                                                                <span class="custom-option-header">
-                                                                    <span class="fw-medium">John Doe (Default)</span>
-                                                                    <span class="badge bg-label-primary">Home</span>
-                                                                </span>
-                                                                <span class="custom-option-body">
-                                                                    <small>4135 Parkway Street, Los Angeles, CA,
-                                                                        90017.<br />
-                                                                        Mobile : 1234567890 Cash / Card on delivery
-                                                                        available</small>
-                                                                    <span class="my-3 border-bottom d-block"></span>
-                                                                    <span class="d-flex">
-                                                                        <a class="me-2"
-                                                                            href="javascript:void(0)">Edit</a>
-                                                                        <a href="javascript:void(0)">Remove</a>
-                                                                    </span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md">
-                                                        <div class="form-check custom-option custom-option-basic">
-                                                            <label class="form-check-label custom-option-content"
-                                                                for="customRadioAddress2">
-                                                                <input name="customRadioTemp" class="form-check-input"
-                                                                    type="radio" value="" id="customRadioAddress2" />
-                                                                <span class="custom-option-header">
-                                                                    <span class="fw-medium">ACME Inc.</span>
-                                                                    <span class="badge bg-label-success">Office</span>
-                                                                </span>
-                                                                <span class="custom-option-body">
-                                                                    <small>87 Hoffman Avenue, New York, NY,
-                                                                        10016.<br />Mobile : 1234567890 Cash / Card on
-                                                                        delivery available</small>
-                                                                    <span class="my-3 border-bottom d-block"></span>
-                                                                    <span class="d-flex">
-                                                                        <a class="me-2"
-                                                                            href="javascript:void(0)">Edit</a>
-                                                                        <a href="javascript:void(0)">Remove</a>
-                                                                    </span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                                <div class="row mb-3 address-list">
                                                 </div>
                                                 <button type="button" class="btn btn-label-primary mb-4"
                                                     data-bs-toggle="modal" data-bs-target="#addNewAddress">
@@ -627,7 +576,7 @@
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <button type="button"
-                                                                        class="btn btn-primary btn-next me-sm-3 me-1">Thanh toán</button>
+                                                                        class="btn btn-primary btn-next me-sm-3 me-1 pay-check">Thanh toán</button>
                                                                     <button type="reset"
                                                                         class="btn btn-label-secondary">Cancel</button>
                                                                 </div>
@@ -640,7 +589,7 @@
                                                             <p>
                                                                 Thanh toán khi nhận hàng là phương thức thanh toán mà người nhận thanh toán cho đơn hàng tại thời điểm giao hàng thay vì trả trước.
                                                             </p>
-                                                            <button type="button" class="btn btn-primary btn-next">Thanh toán</button>
+                                                            <button type="button" class="btn btn-primary btn-next pay-check">Thanh toán</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -690,7 +639,7 @@
                                                 <p>Đơn hàng của bạn đã được tạo!</p>
                                                 <p>
                                                     Chúng tôi sẽ không gửi email xác nhận đến <a
-                                                        href="mailto:john.doe@example.com">john.doe@example.com</a> để 
+                                                        class="email"></a> để 
                                                         bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
                                                         hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó là 
                                                         bài học đầu đời.
@@ -832,20 +781,19 @@
                                                     class="form-control" placeholder="+84 353431537" />
                                             </div>
                                             <div class="col-12">
-                                                <label class="form-label" for="modalAddressAddress2">Address Line
-                                                    2</label>
+                                                <label class="form-label" for="modalAddressAddress2">Địa chỉ cụ thể</label>
                                                 <input type="text" id="modalAddressAddress2" name="modalAddressAddress2"
-                                                    class="form-control" placeholder="Mall Road" />
+                                                    class="form-control" placeholder="154 Trần Duy Hưng" />
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <label class="form-label" for="modalAddressCity">City</label>
+                                                <label class="form-label" for="modalAddressCity">Thành phố</label>
                                                 <input type="text" id="modalAddressCity" name="modalAddressCity"
-                                                    class="form-control" placeholder="Los Angeles" />
+                                                    class="form-control" placeholder="Cầu Giấy" />
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <label class="form-label" for="modalAddressLandmark">State</label>
+                                                <label class="form-label" for="modalAddressLandmark">Tỉnh</label>
                                                 <input type="text" id="modalAddressState" name="modalAddressState"
-                                                    class="form-control" placeholder="California" />
+                                                    class="form-control" placeholder="Hà Nội" />
                                             </div>
                                             <div class="col-12">
                                                 <label class="switch">
