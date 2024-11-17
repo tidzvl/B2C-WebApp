@@ -1,0 +1,184 @@
+{
+    "data": [
+      {
+        "product_id": "P1337",
+        "name": "Google Home",
+        "version": "White",
+        "price": "499.000",
+        "origin": "Google",
+        "image": [
+            "1.png",
+            "google-home-white-2.jpg"
+        ],
+        "count_in_stock": "23",
+        "count_sold": "0",
+        "rating": "4.5",
+        "description": "This is the Google Home White model. It is a white model with a white frame and a white screen."
+      },
+      {
+        "product_id": "P2437",
+        "name": "Iphone 14 Promax",
+        "version": "64GB, Black",
+        "price": "49.999.999",
+        "origin": "Apple",
+        "image": [
+            "2.png",
+            "iphone-2.jpg"
+        ],
+        "count_in_stock": "11",
+        "count_sold": "1",
+        "rating": "3",
+        "description": "This is the Iphone 14 Promax 64GB, Black model. It is a black model with a black frame and a black screen."
+      },
+      {
+        "product_id": "P2223",
+        "name": "One Plus",
+        "version": "White",
+        "price": "19.999.999",
+        "origin": "Samsung",
+        "image": [
+            "oneplus.png",
+            "iphone-2.jpg"
+        ],
+        "count_in_stock": "0",
+        "count_sold": "1",
+        "rating": "0",
+        "description": "Samsung like shit."
+      },
+      {
+        "product_id": "P1111",
+        "name": "Samsung Galaxy S22",
+        "version": "128GB, Blue",
+        "price": "29.999.999",
+        "origin": "Samsung",
+        "image": [
+            "samsung-galaxy-s22.png",
+            "samsung-galaxy-s22-2.jpg"
+        ],
+        "count_in_stock": "15",
+        "count_sold": "2",
+        "rating": "4.2",
+        "description": "This is the Samsung Galaxy S22 128GB, Blue model. It is a blue model with a blue frame and a blue screen."
+      },
+      {
+        "product_id": "P3333",
+        "name": "Xiaomi Redmi 9",
+        "version": "64GB, Red",
+        "price": "9.999.999",
+        "origin": "Xiaomi",
+        "image": [
+            "xiaomi-redmi-9.png",
+            "xiaomi-redmi-9-2.jpg"
+        ],
+        "count_in_stock": "20",
+        "count_sold": "3",
+        "rating": "4.1",
+        "description": "This is the Xiaomi Redmi 9 64GB, Red model. It is a red model with a red frame and a red screen."
+      },
+      {
+        "product_id": "P4444",
+        "name": "Oppo Reno 5",
+        "version": "128GB, White",
+        "price": "24.999.999",
+        "origin": "Oppo",
+        "image": [
+            "oppo-reno-5.png",
+            "oppo-reno-5-2.jpg"
+        ],
+        "count_in_stock": "12",
+        "count_sold": "1",
+        "rating": "4.0",
+        "description": "This is the Oppo Reno 5 128GB, White model. It is a white model with a white frame and a white screen."
+      },
+      {
+        "product_id": "P5555",
+        "name": "Iphone 6",
+        "version": "16GB, Space Gray",
+        "price": "9.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-6.png",
+            "iphone-6-2.jpg"
+        ],
+        "count_in_stock": "10",
+        "count_sold": "2",
+        "rating": "4.0",
+        "description": "This is the Iphone 6 16GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
+      },
+      {
+        "product_id": "P7777",
+        "name": "Iphone 7",
+        "version": "16GB, Space Gray",
+        "price": "7.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-7.png",
+            "iphone-7-2.jpg"
+        ],
+        "count_in_stock": "15",
+        "count_sold": "2",
+        "rating": "4.5",
+        "description": "This is the Iphone 7 16GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
+      },
+      {
+        "product_id": "P8888",
+        "name": "Iphone 8",
+        "version": "64GB, Silver",
+        "price": "8.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-8.png",
+            "iphone-8-2.jpg"
+        ],
+        "count_in_stock": "10",
+        "count_sold": "1",
+        "rating": "4.2",
+        "description": "This is the Iphone 8 64GB, Silver model. It is a silver model with a silver frame and a silver screen."
+      },
+      {
+        "product_id": "P9999",
+        "name": "Iphone X",
+        "version": "64GB, Space Gray",
+        "price": "10.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-x.png",
+            "iphone-x-2.jpg"
+        ],
+        "count_in_stock": "5",
+        "count_sold": "0",
+        "rating": "4.8",
+        "description": "This is the Iphone X 64GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
+      },
+      {
+        "product_id": "P10101",
+        "name": "Iphone XS",
+        "version": "64GB, Gold",
+        "price": "12.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-xs.png",
+            "iphone-xs-2.jpg"
+        ],
+        "count_in_stock": "3",
+        "count_sold": "0",
+        "rating": "4.5",
+        "description": "This is the Iphone XS 64GB, Gold model. It is a gold model with a gold frame and a gold screen."
+      },
+      {
+        "product_id": "P11111",
+        "name": "Iphone XS Max",
+        "version": "256GB, Space Gray",
+        "price": "14.999.999",
+        "origin": "Apple",
+        "image": [
+            "iphone-xs-max.png",
+            "iphone-xs-max-2.jpg"
+        ],
+        "count_in_stock": "2",
+        "count_sold": "0",
+        "rating": "4.8",
+        "description": "This is the Iphone XS Max 256GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
+      }
+    ]
+}
