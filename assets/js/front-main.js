@@ -7,6 +7,17 @@ let isRtl = window.Helpers.isRtl(),
   isDarkStyle = window.Helpers.isDarkStyle();
 
 (function () {
+
+  if(localStorage.getItem('logged_in') == 'true'){
+    console.log("Login done");
+    let fuck_up = document.querySelector('.fuck-up');
+    fuck_up.innerHTML = `
+    <a href="../user/" class="btn btn-primary" target=""
+                ><span class="tf-icons bx bx-user me-md-1"></span
+                ><span class="d-none d-md-block">Trang cá nhân</span></a
+              >`
+  }
+
   const menu = document.getElementById('navbarSupportedContent'),
     nav = document.querySelector('.layout-navbar'),
     navItemLink = document.querySelectorAll('.navbar-nav .nav-link');

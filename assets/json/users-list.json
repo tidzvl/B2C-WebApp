@@ -14,6 +14,21 @@
           "440/40/5 Thống Nhất, P. 16, Gò Vấp, TP. HCM",
           "46 Bạch Đằng, Tân Bình, TP. HCM"
         ]
+      },
+      {
+        "user_id" : "26102004",
+        "name" : "Thanh Bình",
+        "status" : "Đã xác thực",
+        "sex" : "Nữ",
+        "phone" : [
+          "0908152508",
+          "0353431537"
+        ],
+        "email" : "motthuothanhbinh@hcmut.edu.vn",
+        "address" : [
+          "KTX khu B, Di An, Binh Duong",
+          "46 Bạch Đằng, Tân Bình, TP. HCM"
+        ]
       }
     ]
   }
