@@ -5,41 +5,6 @@
 $(function () {
   'use strict';
 
-  // //render infomation
-  // // const data_user = JSON.parse(localStorage.getItem('data_user'));
-  // fetch('/assets/json/users-list.json')
-  // .then(response => response.json())
-  // .then(data => {
-  //   // Xử lý dữ liệu JSON tại đây
-  //   const data_user = data;
-  //   document.querySelectorAll('.name').forEach((element, index) => { 
-  //     element.innerHTML = data_user.data[0].name;
-  //   });
-  //   document.querySelector('.makhachhang').innerHTML = data_user.data[0].user_id;
-  //   document.querySelector('.verified').innerHTML = data_user.data[0].status;
-  //   document.querySelector('.sex').innerHTML = data_user.data[0].sex;
-  //   document.querySelector('.phone').innerHTML = data_user.data[0].phone;
-  //   document.querySelector('.email').innerHTML = data_user.data[0].email;
-  //   //address
-  //   document.querySelectorAll('.address').forEach((element, index) => { 
-  //     if (data_user.data[0].address[index]) { 
-  //       element.innerHTML = data_user.data[0].address[index];
-  //     }
-  //   });
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  // });
-  // //get sum of order and points
-  // const sum_of_order = 13;
-  // const sum_of_points = 146;
-
-  // // document.querySelectorAll('.name').innerHTML = data_user.data[0].name;
-  // document.querySelector('.num-of-invoice').innerHTML = sum_of_order;
-  // document.querySelector('.points').innerHTML = sum_of_points;
-
-  // //!render infomation
-
 
   // Variable declaration for table
   var dt_project_table = $('.datatable-project'),

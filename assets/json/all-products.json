@@ -1,184 +1,334 @@
 {
-    "data": [
-      {
-        "product_id": "P1337",
-        "name": "Google Home",
-        "version": "White",
-        "price": "499.000",
-        "origin": "Google",
-        "image": [
-            "1.png",
-            "google-home-white-2.jpg"
-        ],
-        "count_in_stock": "23",
-        "count_sold": "0",
-        "rating": "4.5",
-        "description": "This is the Google Home White model. It is a white model with a white frame and a white screen."
-      },
-      {
-        "product_id": "P2437",
-        "name": "Iphone 14 Promax",
-        "version": "64GB, Black",
-        "price": "49.999.999",
-        "origin": "Apple",
-        "image": [
-            "2.png",
-            "iphone-2.jpg"
-        ],
-        "count_in_stock": "11",
-        "count_sold": "1",
-        "rating": "3",
-        "description": "This is the Iphone 14 Promax 64GB, Black model. It is a black model with a black frame and a black screen."
-      },
-      {
-        "product_id": "P2223",
-        "name": "One Plus",
-        "version": "White",
-        "price": "19.999.999",
-        "origin": "Samsung",
-        "image": [
-            "oneplus.png",
-            "iphone-2.jpg"
-        ],
-        "count_in_stock": "0",
-        "count_sold": "1",
-        "rating": "0",
-        "description": "Samsung like shit."
-      },
-      {
-        "product_id": "P1111",
-        "name": "Samsung Galaxy S22",
-        "version": "128GB, Blue",
-        "price": "29.999.999",
-        "origin": "Samsung",
-        "image": [
-            "samsung-galaxy-s22.png",
-            "samsung-galaxy-s22-2.jpg"
-        ],
-        "count_in_stock": "15",
-        "count_sold": "2",
-        "rating": "4.2",
-        "description": "This is the Samsung Galaxy S22 128GB, Blue model. It is a blue model with a blue frame and a blue screen."
-      },
-      {
-        "product_id": "P3333",
-        "name": "Xiaomi Redmi 9",
-        "version": "64GB, Red",
-        "price": "9.999.999",
-        "origin": "Xiaomi",
-        "image": [
-            "xiaomi-redmi-9.png",
-            "xiaomi-redmi-9-2.jpg"
-        ],
-        "count_in_stock": "20",
-        "count_sold": "3",
-        "rating": "4.1",
-        "description": "This is the Xiaomi Redmi 9 64GB, Red model. It is a red model with a red frame and a red screen."
-      },
-      {
-        "product_id": "P4444",
-        "name": "Oppo Reno 5",
-        "version": "128GB, White",
-        "price": "24.999.999",
-        "origin": "Oppo",
-        "image": [
-            "oppo-reno-5.png",
-            "oppo-reno-5-2.jpg"
-        ],
-        "count_in_stock": "12",
-        "count_sold": "1",
-        "rating": "4.0",
-        "description": "This is the Oppo Reno 5 128GB, White model. It is a white model with a white frame and a white screen."
-      },
-      {
-        "product_id": "P5555",
-        "name": "Iphone 6",
-        "version": "16GB, Space Gray",
-        "price": "9.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-6.png",
-            "iphone-6-2.jpg"
-        ],
-        "count_in_stock": "10",
-        "count_sold": "2",
-        "rating": "4.0",
-        "description": "This is the Iphone 6 16GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
-      },
-      {
-        "product_id": "P7777",
-        "name": "Iphone 7",
-        "version": "16GB, Space Gray",
-        "price": "7.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-7.png",
-            "iphone-7-2.jpg"
-        ],
-        "count_in_stock": "15",
-        "count_sold": "2",
-        "rating": "4.5",
-        "description": "This is the Iphone 7 16GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
-      },
-      {
-        "product_id": "P8888",
-        "name": "Iphone 8",
-        "version": "64GB, Silver",
-        "price": "8.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-8.png",
-            "iphone-8-2.jpg"
-        ],
-        "count_in_stock": "10",
-        "count_sold": "1",
-        "rating": "4.2",
-        "description": "This is the Iphone 8 64GB, Silver model. It is a silver model with a silver frame and a silver screen."
-      },
-      {
-        "product_id": "P9999",
-        "name": "Iphone X",
-        "version": "64GB, Space Gray",
-        "price": "10.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-x.png",
-            "iphone-x-2.jpg"
-        ],
-        "count_in_stock": "5",
-        "count_sold": "0",
-        "rating": "4.8",
-        "description": "This is the Iphone X 64GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
-      },
-      {
-        "product_id": "P10101",
-        "name": "Iphone XS",
-        "version": "64GB, Gold",
-        "price": "12.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-xs.png",
-            "iphone-xs-2.jpg"
-        ],
-        "count_in_stock": "3",
-        "count_sold": "0",
-        "rating": "4.5",
-        "description": "This is the Iphone XS 64GB, Gold model. It is a gold model with a gold frame and a gold screen."
-      },
-      {
-        "product_id": "P11111",
-        "name": "Iphone XS Max",
-        "version": "256GB, Space Gray",
-        "price": "14.999.999",
-        "origin": "Apple",
-        "image": [
-            "iphone-xs-max.png",
-            "iphone-xs-max-2.jpg"
-        ],
-        "count_in_stock": "2",
-        "count_sold": "0",
-        "rating": "4.8",
-        "description": "This is the Iphone XS Max 256GB, Space Gray model. It is a space gray model with a space gray frame and a space gray screen."
-      }
-    ]
+  "data": [
+    {
+      "product_id": "P1338",
+      "name": "Google Pixel 7",
+      "version": "128GB, Just Black",
+      "price": "14.999.000",
+      "origin": "Google",
+      "image": [
+        "pixel-7.png",
+        "pixel-7-2.jpg"
+      ],
+      "count_in_stock": "10",
+      "count_sold": "3",
+      "rating": "4.7",
+      "description": "This is the Google Pixel 7 128GB, Just Black model. It is a sleek black model with a black frame and screen."
+    },
+    {
+      "product_id": "P1339",
+      "name": "Samsung Galaxy Note 20",
+      "version": "256GB, Mystic Bronze",
+      "price": "21.999.000",
+      "origin": "Samsung",
+      "image": [
+        "note-20.png",
+        "note-20-2.jpg"
+      ],
+      "count_in_stock": "8",
+      "count_sold": "2",
+      "rating": "4.6",
+      "description": "This is the Samsung Galaxy Note 20 256GB, Mystic Bronze model. It is a bronze model with a bronze frame and screen."
+    },
+    {
+      "product_id": "P1340",
+      "name": "Xiaomi Mi 11",
+      "version": "128GB, Horizon Blue",
+      "price": "16.499.000",
+      "origin": "Xiaomi",
+      "image": [
+        "mi-11.png",
+        "mi-11-2.jpg"
+      ],
+      "count_in_stock": "20",
+      "count_sold": "7",
+      "rating": "4.3",
+      "description": "This is the Xiaomi Mi 11 128GB, Horizon Blue model. It is a blue model with a blue frame and screen."
+    },
+    {
+      "product_id": "P1341",
+      "name": "Huawei P50 Pro",
+      "version": "256GB, Golden Black",
+      "price": "24.999.000",
+      "origin": "Huawei",
+      "image": [
+        "p50-pro.png",
+        "p50-pro-2.jpg"
+      ],
+      "count_in_stock": "12",
+      "count_sold": "5",
+      "rating": "4.5",
+      "description": "This is the Huawei P50 Pro 256GB, Golden Black model. It is a luxurious black and gold model with a sleek frame."
+    },
+    {
+      "product_id": "P1342",
+      "name": "Oppo Find X3 Pro",
+      "version": "256GB, Gloss Black",
+      "price": "22.999.000",
+      "origin": "Oppo",
+      "image": [
+        "find-x3-pro.png",
+        "find-x3-pro-2.jpg"
+      ],
+      "count_in_stock": "18",
+      "count_sold": "4",
+      "rating": "4.8",
+      "description": "This is the Oppo Find X3 Pro 256GB, Gloss Black model. It features a glossy black finish and an elegant frame."
+    },
+    {
+      "product_id": "P1343",
+      "name": "Realme GT 5G",
+      "version": "128GB, Racing Yellow",
+      "price": "12.499.000",
+      "origin": "Realme",
+      "image": [
+        "realme-gt.png",
+        "realme-gt-2.jpg"
+      ],
+      "count_in_stock": "25",
+      "count_sold": "6",
+      "rating": "4.4",
+      "description": "This is the Realme GT 5G 128GB, Racing Yellow model. It has a bright yellow design with a premium frame."
+    },
+    {
+      "product_id": "P1344",
+      "name": "Sony Xperia 5 II",
+      "version": "128GB, Frosted Black",
+      "price": "19.999.000",
+      "origin": "Sony",
+      "image": [
+        "xperia-5-ii.png",
+        "xperia-5-ii-2.jpg"
+      ],
+      "count_in_stock": "30",
+      "count_sold": "12",
+      "rating": "4.3",
+      "description": "This is the Sony Xperia 5 II 128GB, Frosted Black model. It features a frosted black finish with a sleek design."
+    },
+    {
+      "product_id": "P1345",
+      "name": "LG Velvet",
+      "version": "128GB, Aurora White",
+      "price": "14.999.000",
+      "origin": "LG",
+      "image": [
+        "lg-velvet.png",
+        "lg-velvet-2.jpg"
+      ],
+      "count_in_stock": "11",
+      "count_sold": "2",
+      "rating": "4.2",
+      "description": "This is the LG Velvet 128GB, Aurora White model. It has an elegant white finish with a modern frame."
+    },
+    {
+      "product_id": "P1346",
+      "name": "Vivo V21e",
+      "version": "128GB, Diamond Flare",
+      "price": "10.999.000",
+      "origin": "Vivo",
+      "image": [
+        "vivo-v21e.png",
+        "vivo-v21e-2.jpg"
+      ],
+      "count_in_stock": "22",
+      "count_sold": "8",
+      "rating": "4.1",
+      "description": "This is the Vivo V21e 128GB, Diamond Flare model. It features a dazzling flare design with a stunning frame."
+    },
+    {
+      "product_id": "P1347",
+      "name": "Motorola Edge 20",
+      "version": "128GB, Frosted Grey",
+      "price": "15.499.000",
+      "origin": "Motorola",
+      "image": [
+        "motorola-edge-20.png",
+        "motorola-edge-20-2.jpg"
+      ],
+      "count_in_stock": "17",
+      "count_sold": "6",
+      "rating": "4.4",
+      "description": "This is the Motorola Edge 20 128GB, Frosted Grey model. It has a modern grey design with a frosted finish."
+    },
+    {
+      "product_id": "P1348",
+      "name": "Xiaomi Poco X3 Pro",
+      "version": "128GB, Phantom Black",
+      "price": "11.999.000",
+      "origin": "Xiaomi",
+      "image": [
+        "poco-x3-pro.png",
+        "poco-x3-pro-2.jpg"
+      ],
+      "count_in_stock": "24",
+      "count_sold": "5",
+      "rating": "4.5",
+      "description": "This is the Xiaomi Poco X3 Pro 128GB, Phantom Black model. It features a premium black design with a powerful performance."
+    },
+    {
+      "product_id": "P1349",
+      "name": "Asus ROG Phone 5",
+      "version": "256GB, Phantom Black",
+      "price": "27.999.000",
+      "origin": "Asus",
+      "image": [
+        "rog-phone-5.png",
+        "rog-phone-5-2.jpg"
+      ],
+      "count_in_stock": "6",
+      "count_sold": "1",
+      "rating": "4.9",
+      "description": "This is the Asus ROG Phone 5 256GB, Phantom Black model. A gaming phone with high-end performance and black finish."
+    },
+    {
+      "product_id": "P1350",
+      "name": "Nokia 8.3 5G",
+      "version": "128GB, Polar Night",
+      "price": "16.499.000",
+      "origin": "Nokia",
+      "image": [
+        "nokia-8-3.png",
+        "nokia-8-3-2.jpg"
+      ],
+      "count_in_stock": "20",
+      "count_sold": "4",
+      "rating": "4.5",
+      "description": "This is the Nokia 8.3 5G 128GB, Polar Night model. It features a stunning polar night finish with advanced 5G support."
+    },
+    {
+      "product_id": "P1351",
+      "name": "Google Pixel 6 Pro",
+      "version": "128GB, Stormy Black",
+      "price": "22.499.000",
+      "origin": "Google",
+      "image": [
+        "pixel-6-pro.png",
+        "pixel-6-pro-2.jpg"
+      ],
+      "count_in_stock": "14",
+      "count_sold": "3",
+      "rating": "4.8",
+      "description": "This is the Google Pixel 6 Pro 128GB, Stormy Black model. It features a stormy black design with premium hardware."
+    },
+    {
+      "product_id": "P1352",
+      "name": "Samsung Galaxy S21 Ultra",
+      "version": "256GB, Phantom Black",
+      "price": "31.499.000",
+      "origin": "Samsung",
+      "image": [
+        "s21-ultra.png",
+        "s21-ultra-2.jpg"
+      ],
+      "count_in_stock": "9",
+      "count_sold": "4",
+      "rating": "4.7",
+      "description": "This is the Samsung Galaxy S21 Ultra 256GB, Phantom Black model. It has an advanced camera and an elegant design."
+    },
+    {
+      "product_id": "P1353",
+      "name": "Xiaomi Redmi Note 10 Pro",
+      "version": "128GB, Onyx Gray",
+      "price": "9.499.000",
+      "origin": "Xiaomi",
+      "image": [
+        "redmi-note-10-pro.png",
+        "redmi-note-10-pro-2.jpg"
+      ],
+      "count_in_stock": "35",
+      "count_sold": "15",
+      "rating": "4.4",
+      "description": "This is the Xiaomi Redmi Note 10 Pro 128GB, Onyx Gray model. It is an affordable option with a sleek design and good performance."
+    },
+    {
+      "product_id": "P1354",
+      "name": "Huawei Mate 40 Pro",
+      "version": "256GB, Black",
+      "price": "24.999.000",
+      "origin": "Huawei",
+      "image": [
+        "mate-40-pro.png",
+        "mate-40-pro-2.jpg"
+      ],
+      "count_in_stock": "13",
+      "count_sold": "7",
+      "rating": "4.6",
+      "description": "This is the Huawei Mate 40 Pro 256GB, Black model. It offers a sophisticated black design with an advanced camera setup."
+    },
+    {
+      "product_id": "P1355",
+      "name": "Vivo X60 Pro",
+      "version": "128GB, Midnight Black",
+      "price": "21.499.000",
+      "origin": "Vivo",
+      "image": [
+        "x60-pro.png",
+        "x60-pro-2.jpg"
+      ],
+      "count_in_stock": "19",
+      "count_sold": "5",
+      "rating": "4.7",
+      "description": "This is the Vivo X60 Pro 128GB, Midnight Black model. It combines powerful performance with an elegant design."
+    },
+    {
+      "product_id": "P1356",
+      "name": "OnePlus Nord 2",
+      "version": "128GB, Blue Haze",
+      "price": "13.499.000",
+      "origin": "OnePlus",
+      "image": [
+        "nord-2.png",
+        "nord-2-2.jpg"
+      ],
+      "count_in_stock": "22",
+      "count_sold": "8",
+      "rating": "4.5",
+      "description": "This is the OnePlus Nord 2 128GB, Blue Haze model. It features a clean blue design with powerful features."
+    },
+    {
+      "product_id": "P1357",
+      "name": "Realme Narzo 30 Pro",
+      "version": "128GB, Black",
+      "price": "8.999.000",
+      "origin": "Realme",
+      "image": [
+        "narzo-30-pro.png",
+        "narzo-30-pro-2.jpg"
+      ],
+      "count_in_stock": "30",
+      "count_sold": "10",
+      "rating": "4.2",
+      "description": "This is the Realme Narzo 30 Pro 128GB, Black model. A budget-friendly phone with solid performance and a sleek design."
+    },
+    {
+      "product_id": "P1358",
+      "name": "Motorola Moto G100",
+      "version": "128GB, Iridescent Cloud",
+      "price": "15.999.000",
+      "origin": "Motorola",
+      "image": [
+        "moto-g100.png",
+        "moto-g100-2.jpg"
+      ],
+      "count_in_stock": "16",
+      "count_sold": "6",
+      "rating": "4.3",
+      "description": "This is the Motorola Moto G100 128GB, Iridescent Cloud model. It features a modern design with a unique iridescent finish."
+    },
+    {
+      "product_id": "P1359",
+      "name": "Google Pixel 6",
+      "version": "128GB, Coral",
+      "price": "18.499.000",
+      "origin": "Google",
+      "image": [
+        "pixel-6.png",
+        "pixel-6-2.jpg"
+      ],
+      "count_in_stock": "12",
+      "count_sold": "3",
+      "rating": "4.7",
+      "description": "This is the Google Pixel 6 128GB, Coral model. It has a vibrant coral finish with a sleek, ergonomic design."
+    }
+  ]
 }
