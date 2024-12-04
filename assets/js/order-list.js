@@ -4,6 +4,18 @@
 
 'use strict';
 
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @ajax to API get list order - use mechanic Data table and bootstrap modal
+ * @callback order.js render overview order
+ *
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
 // Datatable (jquery)
 
 $(function () {
@@ -31,15 +43,9 @@ $(function () {
     paymentObj = {
       1: { title: 'Completed', class: 'text-success' },
       2: { title: 'In Progress', class: 'text-warning' },
-      3: { title: 'Not Started', class: 'text-danger' },
-      4: { title: 'Cancelled', class: 'text-secondary' }
+      3: { title: 'Not Started', class: 'text-secondary' },
+      4: { title: 'Cancelled', class: 'text-danger' }
     };
-
-    var overviewData = {
-      total: 0, completed: 0, inProgress: 0,cancel: 0
-    }; 
-    localStorage.removeItem("overviewData");
-    localStorage.setItem('overviewData', JSON.stringify(overviewData));
 
   if (dt_order_table.length) {
     var dt_products = dt_order_table.DataTable({
@@ -99,16 +105,22 @@ $(function () {
           }
         },
         {
+          targets: 4,
+          render: function (data, type, full, meta) {
+            var $total_amount = full['total_amount'];
+            // Creates full output for row
+            var $row_output = '<span class="fw-medium">' + $total_amount + '</span>';
+            return $row_output;
+          }
+        },
+        {
           targets: 5,
           render: function (data, type, full, meta) {
             var $payment = full['progress'];
-            overviewData = JSON.parse(localStorage.getItem('overviewData'));
-            overviewData.total++;
-            if($payment == "In Progress") {$payment = 1; overviewData.inProgress++;}
-            else if($payment == "Completed") {$payment = 2; overviewData.completed++;}
-            else if($payment == "Not Started") {$payment = 3; overviewData.inProgress++;}
-            else if($payment == "Cancelled") {$payment = 4; overviewData.cancel++;}
-            localStorage.setItem('overviewData',JSON.stringify(overviewData));
+            if($payment == "In Progress") {$payment = 1;}
+            else if($payment == "Completed") {$payment = 2; }
+            else if($payment == "Not Started") {$payment = 3;}
+            else if($payment == "Cancelled") {$payment = 4; }
             var $deli = paymentObj[$payment];
             if ($deli) {
               return (
@@ -119,7 +131,7 @@ $(function () {
                 '</h6>'
               );
             }
-            return data;
+            // return data;
           }
         },
         {
@@ -349,11 +361,11 @@ $(function () {
     $('.dataTables_length').addClass('mt-0 mt-md-3 me-3');
     $('.dt-action-buttons').addClass('pt-0');
   }
-
   // Delete Record
   $('.datatables-order tbody').on('click', '.delete-record', function () {
     dt_products.row($(this).parents('tr')).remove().draw();
   });
+
 
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization

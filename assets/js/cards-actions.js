@@ -33,8 +33,45 @@ function addToCart(element) {
         productDiv.className = "col-md";
         productDiv.innerHTML = `
         <div class="card card-action mb-4" style="height: 100%">
-            <img src="../../assets/img/products/${product.image[0]}" class="card-img-top" alt="..." style="margin-top: 5%">
-            <div class="card-header">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img class="d-block w-100" src="../../assets/img/products/${product.image[0]}" alt="First slide" />
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src="../../assets/img/products/${product.image[1]}" alt="Second slide" />
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src="../../assets/img/products/${product.image[2]}" alt="Third slide" />
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                      </div>
+                    </div>
+                  </div>    
+        <div class="card-header">
             <h3 class="card-action-title">${product.name}</h3>
             <div class="card-action-element">
                 <ul class="list-inline mb-0">

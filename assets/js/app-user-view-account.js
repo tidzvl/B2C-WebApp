@@ -2,6 +2,19 @@
  * App User View - Account (jquery)
  */
 
+
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @ajax to API get list order - use mechanic Data table and bootstrap modal
+ *
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
+
 $(function () {
   'use strict';
 

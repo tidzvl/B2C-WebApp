@@ -2,6 +2,22 @@
  *  Pages Authentication
  */
 
+
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @jQuery call when click login button and run some simple function login check authentication
+ * * @param {string} username search from users-list.json -> want to change to API
+ * * @param {string} password is hardcode "tindeptrai"
+ * @callback login.onclick - save information in local storage and go to user page -> change if you want!
+ * 
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
+
 'use strict';
 const formAuthentication = document.querySelector('#formAuthentication');
 

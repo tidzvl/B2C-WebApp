@@ -2,7 +2,27 @@
  *  Form Wizard
  */
 
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @jQuery render all products in product-list.json -> want to change with api get cart and edit some display format
+ * @default main - calculator total price when render product -> you can create the invoice with that price, that be easy
+ * @NOTE discount is not working! Edit and remove address is not working!
+ * @search "HERE IS ADDRESS" to go edit code if format not working!
+ * @add ".that-be-dilivery and .that-be-address" - home or office and dilivery address, default is home and first address
+ * 
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
+
+
+
 'use strict';
+
+
 
 // rateyo (jquery)
 $(function () {
@@ -191,7 +211,7 @@ $(function () {
   });
   //!--delivery
 
-  //render address people
+  //render address people //HERE IS ADDRESS//
   $.getJSON('/assets/json/users-list.json') //from database in
   .then(function(data) {
     var person = data.data[0];
@@ -214,6 +234,10 @@ $(function () {
         have = '';
       }
       //--end
+      if(index === 0){
+        document.querySelector('.that-be-dilivery').innerText = "Home";
+        document.querySelector('.that-be-address').innerText = element;
+      }
       addressSpan.innerHTML = `
         <div class="form-check custom-option custom-option-basic checked">
           <label class="form-check-label custom-option-content"
@@ -221,11 +245,11 @@ $(function () {
               <input name="customRadioTemp" class="form-check-input"
                   type="radio" value="" id="customRadioAddress${index}" ${have}/>
               <span class="custom-option-header">
-                  <span class="fw-medium">${config}</span>
+                  <span class="fw-medium type">${config}</span>
                   <span class="badge bg-label-${config2}">${config}</span>
               </span>
               <span class="custom-option-body">
-                  <small>${element}<br />
+                  <small class="type-address">${element}<br />
                       Mobile : ${person.phone[index]} </small>
                   <span class="my-3 border-bottom d-block"></span>
                   <span class="d-flex">
@@ -237,6 +261,10 @@ $(function () {
           </label>
       </div>
       `
+      addressSpan.querySelector('input.form-check-input').addEventListener('change', function() {
+        document.querySelector('.that-be-dilivery').innerText = this.parentElement.querySelector('.type').innerText;
+        document.querySelector('.that-be-address').innerText = this.parentElement.querySelector('.type-address').innerText;
+      });
       addressList.appendChild(addressSpan);
     })
   })

@@ -4,6 +4,25 @@
 
 "use strict";
 
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @Before get full customer information
+ * @callback render all infomation, navbar, menu
+ * @NotInclude dark style -> code if have free time
+ * @param {json} customerInfor in local storage callback when login
+ * @function logout - logout and remove all infomation in local storage
+ * @jQuert get type of product when click on menu
+ *
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
+
+
+
 let isRtl = window.Helpers.isRtl(),
   isDarkStyle = window.Helpers.isDarkStyle(),
   menu,
@@ -15,6 +34,15 @@ if (document.getElementById("layout-menu")) {
     .getElementById("layout-menu")
     .classList.contains("menu-horizontal");
 }
+
+$(document).ready(function() {
+  $('.menu-item a').on('click', function(e) {
+    e.preventDefault();
+    const menuItemText = $(this).text().trim();
+    localStorage.setItem('menuItemSelected', menuItemText);
+    window.location.href = $(this).attr('href');
+  });
+});
 
 (function () {
   const menu_layout = `
@@ -31,6 +59,10 @@ if (document.getElementById("layout-menu")) {
                         <a href="../home/" class="menu-link">
                           <i class="menu-icon tf-icons bx bx-pie-chart-alt-2"></i>
                            Landing
+                        </a>
+                        <a href="../timeline/" class="menu-link">
+                          <i class="menu-icon tf-icons bx bx-timer"></i>
+                           Timeline
                         </a>
                       </li>
                     </ul>
@@ -162,7 +194,7 @@ if (document.getElementById("layout-menu")) {
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block lh-1 name">Tin Dep Trai</span>
+                            <span class="fw-medium d-block lh-1 name"></span>
                             <small>Khách hàng</small>
                           </div>
                         </div>
@@ -172,7 +204,7 @@ if (document.getElementById("layout-menu")) {
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href=".">
+                      <a class="dropdown-item" href="../user/">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">Thông tin cá nhân</span>
                       </a>
@@ -184,7 +216,7 @@ if (document.getElementById("layout-menu")) {
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href=".">
+                      <a class="dropdown-item" href="../order/">
                         <span class="d-flex align-items-center align-middle">
                           <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
                           <span class="flex-grow-1 align-middle">Đơn hàng của tôi</span>
@@ -243,10 +275,6 @@ if (document.getElementById("layout-menu")) {
   }
   const data_user = JSON.parse(localStorage.getItem("user_data"));
   console.log(data_user);
-  // fetch('/assets/json/users-list.json')
-  // .then(response => response.json())
-  // .then(data => {
-  //   const data_user = data;
   document.querySelectorAll(".name").forEach((element, index) => {
     element.innerHTML = data_user.name;
   });
@@ -287,6 +315,7 @@ if (document.getElementById("layout-menu")) {
     localStorage.removeItem("logged_in");
     localStorage.removeItem("user_data");
     localStorage.removeItem("overviewData");
+    localStorage.removeItem("menuItemSelected");
     setTimeout(function () {
       location.href = "../home/";
     }, 100);

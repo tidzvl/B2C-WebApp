@@ -7,8 +7,9 @@
       "price": "14.999.000",
       "origin": "Google",
       "image": [
-        "pixel-7.png",
-        "pixel-7-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "10",
       "count_sold": "3",
@@ -22,8 +23,9 @@
       "price": "21.999.000",
       "origin": "Samsung",
       "image": [
-        "note-20.png",
-        "note-20-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "8",
       "count_sold": "2",
@@ -37,8 +39,9 @@
       "price": "16.499.000",
       "origin": "Xiaomi",
       "image": [
-        "mi-11.png",
-        "mi-11-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "20",
       "count_sold": "7",
@@ -52,8 +55,9 @@
       "price": "24.999.000",
       "origin": "Huawei",
       "image": [
-        "p50-pro.png",
-        "p50-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "12",
       "count_sold": "5",
@@ -67,8 +71,9 @@
       "price": "22.999.000",
       "origin": "Oppo",
       "image": [
-        "find-x3-pro.png",
-        "find-x3-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "18",
       "count_sold": "4",
@@ -82,8 +87,9 @@
       "price": "12.499.000",
       "origin": "Realme",
       "image": [
-        "realme-gt.png",
-        "realme-gt-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "25",
       "count_sold": "6",
@@ -97,8 +103,9 @@
       "price": "19.999.000",
       "origin": "Sony",
       "image": [
-        "xperia-5-ii.png",
-        "xperia-5-ii-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "30",
       "count_sold": "12",
@@ -112,8 +119,9 @@
       "price": "14.999.000",
       "origin": "LG",
       "image": [
-        "lg-velvet.png",
-        "lg-velvet-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "11",
       "count_sold": "2",
@@ -127,8 +135,9 @@
       "price": "10.999.000",
       "origin": "Vivo",
       "image": [
-        "vivo-v21e.png",
-        "vivo-v21e-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "22",
       "count_sold": "8",
@@ -142,8 +151,9 @@
       "price": "15.499.000",
       "origin": "Motorola",
       "image": [
-        "motorola-edge-20.png",
-        "motorola-edge-20-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "17",
       "count_sold": "6",
@@ -157,8 +167,9 @@
       "price": "11.999.000",
       "origin": "Xiaomi",
       "image": [
-        "poco-x3-pro.png",
-        "poco-x3-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "24",
       "count_sold": "5",
@@ -172,8 +183,9 @@
       "price": "27.999.000",
       "origin": "Asus",
       "image": [
-        "rog-phone-5.png",
-        "rog-phone-5-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "6",
       "count_sold": "1",
@@ -187,8 +199,9 @@
       "price": "16.499.000",
       "origin": "Nokia",
       "image": [
-        "nokia-8-3.png",
-        "nokia-8-3-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "20",
       "count_sold": "4",
@@ -202,8 +215,9 @@
       "price": "22.499.000",
       "origin": "Google",
       "image": [
-        "pixel-6-pro.png",
-        "pixel-6-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "14",
       "count_sold": "3",
@@ -217,8 +231,9 @@
       "price": "31.499.000",
       "origin": "Samsung",
       "image": [
-        "s21-ultra.png",
-        "s21-ultra-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "9",
       "count_sold": "4",
@@ -232,8 +247,9 @@
       "price": "9.499.000",
       "origin": "Xiaomi",
       "image": [
-        "redmi-note-10-pro.png",
-        "redmi-note-10-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "35",
       "count_sold": "15",
@@ -247,8 +263,9 @@
       "price": "24.999.000",
       "origin": "Huawei",
       "image": [
-        "mate-40-pro.png",
-        "mate-40-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "13",
       "count_sold": "7",
@@ -262,8 +279,9 @@
       "price": "21.499.000",
       "origin": "Vivo",
       "image": [
-        "x60-pro.png",
-        "x60-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "19",
       "count_sold": "5",
@@ -277,8 +295,9 @@
       "price": "13.499.000",
       "origin": "OnePlus",
       "image": [
-        "nord-2.png",
-        "nord-2-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "22",
       "count_sold": "8",
@@ -292,8 +311,9 @@
       "price": "8.999.000",
       "origin": "Realme",
       "image": [
-        "narzo-30-pro.png",
-        "narzo-30-pro-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "30",
       "count_sold": "10",
@@ -307,8 +327,9 @@
       "price": "15.999.000",
       "origin": "Motorola",
       "image": [
-        "moto-g100.png",
-        "moto-g100-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "16",
       "count_sold": "6",
@@ -322,8 +343,9 @@
       "price": "18.499.000",
       "origin": "Google",
       "image": [
-        "pixel-6.png",
-        "pixel-6-2.jpg"
+        "iphone-6.png",
+        "iphone-7.png",
+        "iphone-8.png"
       ],
       "count_in_stock": "12",
       "count_sold": "3",

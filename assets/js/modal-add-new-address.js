@@ -2,6 +2,20 @@
  * Add New Address
  */
 
+/**
+ * @author TiDz
+ * @version 1.0
+ * @since 1.0
+ *
+ *
+ * @jQuery call modal add new address and validate form
+ * @NOTE i have not write anything logical for this script lol :))
+ *
+ * DO NOT EDIT ANYTHING EXCEPT <TODO>
+ */
+
+
+
 'use strict';
 
 // Select2 (jquery)
