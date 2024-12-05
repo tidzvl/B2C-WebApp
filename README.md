@@ -6,3 +6,6 @@ B2C according to FPT Shop model
 
 -- /html/horizontal-menu-template-no-customizer/extended-ui-timeline-fullscreen.html to timeline
 -- html/horizontal-menu-template-no-customizer/ui-carousel.html if multi picture
+
+-- with ajax, change path to {url: "url of api", dataSrc: "",}
+-- with fetch, fetch("url of api").then((response) => { TODO })

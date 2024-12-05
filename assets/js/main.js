@@ -274,14 +274,14 @@ $(document).ready(function() {
     }, 0);
   }
   const data_user = JSON.parse(localStorage.getItem("user_data"));
-  console.log(data_user);
+  console.log(data_user, " NOTE: that being file js/main.js");
   document.querySelectorAll(".name").forEach((element, index) => {
-    element.innerHTML = data_user.name;
+    element.innerHTML = data_user.firstName + " " + data_user.lastName;
   });
   try {
-    document.querySelector(".makhachhang").innerHTML = data_user.user_id;
-    document.querySelector(".verified").innerHTML = data_user.status;
-    document.querySelector(".sex").innerHTML = data_user.sex;
+    document.querySelector(".makhachhang").innerHTML = data_user.customerId;
+    document.querySelector(".verified").innerHTML = data_user.citizenId;
+    document.querySelector(".sex").innerHTML = data_user.gender;
     document.querySelector(".phone").innerHTML = data_user.phone[0];
     document.querySelector(".email").innerHTML = data_user.email;
     //address
@@ -291,14 +291,15 @@ $(document).ready(function() {
       }
     });
     //get sum of order and points
-    const sum_of_order = 11;
+    // const sum_of_order = 11;
     const sum_of_points = 146;
-
     // document.querySelectorAll('.name').innerHTML = data_user.data[0].name;
-    document.querySelector(".num-of-invoice").innerHTML = sum_of_order;
+    try {
+      document.querySelector(".num-of-invoice").innerHTML = Math.floor(parseInt(localStorage.getItem("number_of_order"))/5);
+    } catch (e) {console.log("Not render sum of invoice");}
     document.querySelector(".points").innerHTML = sum_of_points;
   } catch (e) {
-    console.log(e);
+    console.log("That site out of user page");
   }
   // })
   // .catch(error => {

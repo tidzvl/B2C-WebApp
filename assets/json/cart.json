@@ -1,3 +1,22 @@
 {
-    "data": []
+    "data": [
+        {
+            "cartItemId" : 1,
+            "productId": 5,
+            "quantity": 8,
+            "totalPrice": 40000.0
+        },
+        {
+            "cartItemId" : 2,
+            "productId": 7,
+            "quantity": 5,
+            "totalPrice": 30000.0
+        },
+        {
+            "cartItemId" : 3,
+            "productId": 9,
+            "quantity": 9,
+            "totalPrice": 63000.0
+        }
+    ]
 }

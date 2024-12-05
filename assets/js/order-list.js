@@ -57,7 +57,7 @@ $(function () {
         { data: 'order_id' },
         { data: 'order_date' },
         { data: 'total_amount' },
-        { data: 'progress' },
+        { data: 'status' },
         { data: 'delivery_date' }, //method_number
         { data: '' }
       ],
@@ -116,7 +116,7 @@ $(function () {
         {
           targets: 5,
           render: function (data, type, full, meta) {
-            var $payment = full['progress'];
+            var $payment = full['status'];
             if($payment == "In Progress") {$payment = 1;}
             else if($payment == "Completed") {$payment = 2; }
             else if($payment == "Not Started") {$payment = 3;}

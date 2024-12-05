@@ -10,6 +10,7 @@
  *
  *
  * @ajax to API get list order - use mechanic Data table and bootstrap modal
+ * @ajax to get cart from API - do not use mechanic Data table and bootstrap modal
  *
  * DO NOT EDIT ANYTHING EXCEPT <TODO>
  */
@@ -18,12 +19,15 @@
 $(function () {
   'use strict';
 
-
   // Variable declaration for table
   var dt_project_table = $('.datatable-project'),
     dt_invoice_table = $('.datatable-invoice');
 
   // Project datatable
+  var num_of_order = localStorage.getItem("number_of_order");
+  // if(!num_of_order) {
+  localStorage.setItem("number_of_order", "0");
+  // }
   // --------------------------------------------------------------------
   if (dt_project_table.length) {
     var dt_project = dt_project_table.DataTable({
@@ -34,7 +38,7 @@ $(function () {
         { data: 'delivery_date' },
         { data: 'order_id' },
         { data: 'total_amount' },
-        { data: 'progress' },
+        { data: 'status' },
         { data: 'delivery_date' }
       ],
       columnDefs: [
@@ -62,18 +66,19 @@ $(function () {
           searchable: false
         },
         {
-          // User full name and email
           targets: 2,
           responsivePriority: 1,
           render: function (data, type, full, meta) {
-            var $name = full['order_id'],
+            var $count = localStorage.getItem("number_of_order");
+            localStorage.setItem("number_of_order", parseInt($count) + 1);
+            var $id = full['order_id'],
               $order_date = full['order_date'];
             // Creates full output for row
             var $row_output =
-              '<div class="d-flex justify-content-left align-items-center">' +
+              '<div class="d-flex justify-content-left align-items-center ">' +
               '<div class="d-flex flex-column">' +
-              '<span class="text-truncate fw-medium">' +
-              $name +
+              '<span class="text-truncate fw-medium">#' +
+              $id +
               '</span>' +
               '<small class="text-muted">' +
               $order_date +
@@ -92,7 +97,7 @@ $(function () {
           targets: 4,
           responsivePriority: 3,
           render: function (data, type, full, meta) {
-            var $progress = full['progress'];
+            var $progress = full['status'];
             return (
               '<div class="d-flex flex-column"><span class="text-truncate fw-medium">' +
               $progress +
@@ -157,7 +162,6 @@ $(function () {
       }
     });
   }
-
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization
   setTimeout(() => {

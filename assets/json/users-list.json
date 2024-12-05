@@ -1,10 +1,11 @@
 {
     "data": [
       {
-        "user_id" : "2213491",
-        "name" : "Tin Dep Trai",
-        "status" : "Đã xác thực",
-        "sex" : "Nam",
+        "customerId" : "2213491",
+        "firstName" : "Tin",
+        "lastName": "Nguyen",
+        "birthday" : "10-04-2004",
+        "gender" : "Nam",
         "phone" : [
           "0353431537",
           "0353431537"
@@ -13,13 +14,16 @@
         "address" : [
           "440/40/5 Thống Nhất, P. 16, Gò Vấp, TP. HCM",
           "46 Bạch Đằng, Tân Bình, TP. HCM"
-        ]
+        ],
+        "avatar" : null,
+        "citizenId": "2213491"
       },
       {
-        "user_id" : "26102004",
-        "name" : "Thanh Bình",
-        "status" : "Đã xác thực",
-        "sex" : "Nữ",
+        "customerId" : "26102004",
+        "firstName" : "Bình",
+        "lastName": "Thanh",
+        "birthday" : "26-10-2004",
+        "gender" : "Nữ",
         "phone" : [
           "0908152508",
           "0353431537"
@@ -28,7 +32,9 @@
         "address" : [
           "KTX khu B, Di An, Binh Duong",
           "46 Bạch Đằng, Tân Bình, TP. HCM"
-        ]
+        ],
+        "avatar" : null,
+        "citizenId": "123456789"
       }
     ]
   }

@@ -167,7 +167,7 @@ $(document).ready(function() {
                     </div>
                     </div>
                     <div class="card-body">
-                    <span class="product-id" data-id="${product.product_id}"></span>
+                    <span class="product-id" data-id="${product.productId}"></span>
                     <h5 class="card-text"> ${product.price} đ</h5>
                     <p class="card-text">${product.description}</p>
                     <p class="card-text"><small class="text-muted">Click vào <i class="tf-icons bx bx-fullscreen"></i> để xem chi tiết.</small></p>

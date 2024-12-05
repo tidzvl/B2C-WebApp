@@ -21,12 +21,14 @@
 
 
 setTimeout(function () {
-  const inProgress = document.querySelectorAll('.text-warning').length,
+  var inProgress = document.querySelectorAll('.text-warning').length,
     completed = document.querySelectorAll('.text-success').length,
     cancelled = document.querySelectorAll('.text-danger').length,
     notStarted = document.querySelectorAll('.text-secondary').length,
-    total = inProgress + completed + cancelled + notStarted,
+    total = Math.floor(localStorage.getItem("number_of_order")/5),
     progress = inProgress + notStarted;
+    var omg = total - cancelled;
+    if(progress < omg) progress += (total-omg);
 
   const orderOverview = `
         <div class="row gy-4 gy-sm-1">

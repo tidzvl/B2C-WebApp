@@ -28,7 +28,7 @@ $('#login-button').click(function (event) {
     $.getJSON('/assets/json/users-list.json')
     .then(function(data) {
         const user_list = data.data;
-        const user = user_list.find(user => user.user_id === userName);
+        const user = user_list.find(user => user.customerId === userName);
         if(user &&  pwd=="tindeptrai"){ 
             $('form').fadeOut(500);
             $('.wrapper').addClass('form-success');
