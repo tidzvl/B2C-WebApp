@@ -2,7 +2,6 @@
  *  Pages Authentication
  */
 
-
 /**
  * @author TiDz
  * @version 1.0
@@ -13,41 +12,57 @@
  * * @param {string} username search from users-list.json -> want to change to API
  * * @param {string} password is hardcode "tindeptrai"
  * @callback login.onclick - save information in local storage and go to user page -> change if you want!
- * 
+ *
  * DO NOT EDIT ANYTHING EXCEPT <TODO>
  */
 
+"use strict";
 
-'use strict';
-const formAuthentication = document.querySelector('#formAuthentication');
+const formAuthentication = document.querySelector("#formAuthentication");
 
-$('#login-button').click(function (event) {
-    event.preventDefault();
-	var userName=document.getElementById("email").value;  
-    var pwd=document.getElementById("password").value;
-    $.getJSON('/assets/json/users-list.json')
-    .then(function(data) {
-        const user_list = data.data;
-        const user = user_list.find(user => user.customerId === userName);
-        if(user &&  pwd=="tindeptrai"){ 
-            $('form').fadeOut(500);
-            $('.wrapper').addClass('form-success');
-            localStorage.setItem('logged_in', true);
-            localStorage.setItem('user_data', JSON.stringify(user));
-            console.log("Login done");
-            setTimeout(function(){location.href="../user/";},2000);
-        }
-        else{
-            alert("Wrong Password");
-        }
-    })
-    .catch(function(error) {
+$("#login-button").click(function (event) {
+  event.preventDefault();
+  var userName = document.getElementById("email").value;
+  var pwd = document.getElementById("password").value;
+  async function checkContain(userName) {
+    try {
+      const response = await fetch('/call/api/customers');
+      const data = await response.json();
+      const result = data.result.find((user) => user.email === userName || user.phone === userName);
+      return result;
+    } catch (error) {
       console.error(error);
+    }
+  }
+
+
+  $.getJSON("/assets/json/users-list.json")
+    .then(function (data) {
+      const user_list = data.data;
+      const user = user_list.find((user) => user.email === userName);
+      // if(user &&  pwd=="tindeptrai"){
+
+      checkContain(userName).then(data => {
+        if (data) {
+          $("form").fadeOut(500);
+          $(".wrapper").addClass("form-success");
+          localStorage.setItem("logged_in", true);
+          localStorage.setItem("user_data", JSON.stringify(data));
+          console.log("Login done");
+          setTimeout(function () {
+            location.href = "../user/";
+          }, 2000);
+        } else {
+          alert("Wrong Password");
+        }
+      })
     })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
-
-document.addEventListener('DOMContentLoaded', function (e) {
+document.addEventListener("DOMContentLoaded", function (e) {
   (function () {
     // Form validation for Add new record
     if (formAuthentication) {
@@ -56,89 +71,93 @@ document.addEventListener('DOMContentLoaded', function (e) {
           username: {
             validators: {
               notEmpty: {
-                message: 'Please enter username'
+                message: "Please enter username",
               },
               stringLength: {
                 min: 6,
-                message: 'Username must be more than 6 characters'
-              }
-            }
+                message: "Username must be more than 6 characters",
+              },
+            },
           },
           email: {
             validators: {
               notEmpty: {
-                message: 'Please enter your email'
+                message: "Please enter your email",
               },
               emailAddress: {
-                message: 'Please enter valid email address'
-              }
-            }
+                message: "Please enter valid email address",
+              },
+            },
           },
-          'email-username': {
+          "email-username": {
             validators: {
               notEmpty: {
-                message: 'Please enter email / username'
+                message: "Please enter email / username",
               },
               stringLength: {
                 min: 6,
-                message: 'Username must be more than 6 characters'
-              }
-            }
+                message: "Username must be more than 6 characters",
+              },
+            },
           },
           password: {
             validators: {
               notEmpty: {
-                message: 'Please enter your password'
+                message: "Please enter your password",
               },
               stringLength: {
                 min: 6,
-                message: 'Password must be more than 6 characters'
-              }
-            }
+                message: "Password must be more than 6 characters",
+              },
+            },
           },
-          'confirm-password': {
+          "confirm-password": {
             validators: {
               notEmpty: {
-                message: 'Please confirm password'
+                message: "Please confirm password",
               },
               identical: {
                 compare: function () {
-                  return formAuthentication.querySelector('[name="password"]').value;
+                  return formAuthentication.querySelector('[name="password"]')
+                    .value;
                 },
-                message: 'The password and its confirm are not the same'
+                message: "The password and its confirm are not the same",
               },
               stringLength: {
                 min: 6,
-                message: 'Password must be more than 6 characters'
-              }
-            }
+                message: "Password must be more than 6 characters",
+              },
+            },
           },
           terms: {
             validators: {
               notEmpty: {
-                message: 'Please agree terms & conditions'
-              }
-            }
-          }
+                message: "Please agree terms & conditions",
+              },
+            },
+          },
         },
         plugins: {
           trigger: new FormValidation.plugins.Trigger(),
           bootstrap5: new FormValidation.plugins.Bootstrap5({
-            eleValidClass: '',
-            rowSelector: '.mb-3'
+            eleValidClass: "",
+            rowSelector: ".mb-3",
           }),
           submitButton: new FormValidation.plugins.SubmitButton(),
 
           defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-          autoFocus: new FormValidation.plugins.AutoFocus()
+          autoFocus: new FormValidation.plugins.AutoFocus(),
         },
-        init: instance => {
-          instance.on('plugins.message.placed', function (e) {
-            if (e.element.parentElement.classList.contains('input-group')) {
-              e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+        init: (instance) => {
+          instance.on("plugins.message.placed", function (e) {
+            if (e.element.parentElement.classList.contains("input-group")) {
+              e.element.parentElement.insertAdjacentElement(
+                "afterend",
+                e.messageElement
+              );
             }
           });
-        }
+        },
       });
     }
     //  Two Steps Verification

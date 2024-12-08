@@ -4,7 +4,6 @@
 
 "use strict";
 
-
 /**
  * @author TiDz
  * @version 1.0
@@ -18,19 +17,36 @@
  * DO NOT EDIT ANYTHING EXCEPT <TODO>
  */
 
-
-
 setTimeout(function () {
-  var inProgress = document.querySelectorAll('.text-warning').length,
-    completed = document.querySelectorAll('.text-success').length,
-    cancelled = document.querySelectorAll('.text-danger').length,
-    notStarted = document.querySelectorAll('.text-secondary').length,
-    total = Math.floor(localStorage.getItem("number_of_order")/5),
-    progress = inProgress + notStarted;
-    var omg = total - cancelled;
-    if(progress < omg) progress += (total-omg);
+  async function getData() {
+    try {
+      const customerId = JSON.parse(
+        localStorage.getItem("user_data")
+      ).customerId;
+      const response = await fetch(
+        "/call/api/order/all?customerId=" + customerId
+      );
+      const data = await response.json();
+      return data.result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  const orderOverview = `
+  getData().then((data) => {
+    let total = 0;
+    let completed = 0,
+      progress = 0,
+      canceled = 0;
+    data.forEach((item) => {
+      total++;
+      if (item.status == "Completed") completed++;
+      else if (item.status == "Cancelled") canceled++;
+      else if (item.status == "In Progress") progress++;
+      else if (item.status == "Not Started") progress++;
+    });
+
+    const orderOverview = `
         <div class="row gy-4 gy-sm-1">
                       <div class="col-sm-6 col-lg-3">
                         <div
@@ -79,7 +95,7 @@ setTimeout(function () {
                       <div class="col-sm-6 col-lg-3">
                         <div class="d-flex justify-content-between align-items-start">
                           <div>
-                            <h3 class="mb-2">${cancelled}</h3>
+                            <h3 class="mb-2">${canceled}</h3>
                             <p class="mb-0">Đã hủy</p>
                           </div>
                           <div class="avatar">
@@ -92,6 +108,6 @@ setTimeout(function () {
                     </div>
     `;
 
-    document.querySelector('.overview').innerHTML = orderOverview;
-
+    document.querySelector(".overview").innerHTML = orderOverview;
+  });
 }, 3000);

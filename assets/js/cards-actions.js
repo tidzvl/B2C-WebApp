@@ -8,7 +8,7 @@
 
 function addToCart(element) {
   const id = element.parentNode.querySelector(".product-id").getAttribute("data-id");
-  console.log(id);
+  // console.log(id);
   
 }
 
@@ -17,19 +17,35 @@ function addToCart(element) {
 
 
 (function () {
+
+  async function getData(){
+    try{
+      const response = await fetch("/call/api/products/all");
+      const data = await response.json();
+      // console.log(data);
+      return data.result;
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+
   //loading product do not use jQuery
-  fetch("/assets/json/all-products.json")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      const products = data.data;
-      console.log(products.length);
+  getData()
+    .then((data) => {
+      const products = data;
       var productsList = document.querySelector(".all-products");
       //loop
-      for (var i = 0; i < 12; i++) {
+      var count;
+      if(products.length < 12) count = products.length;
+      else count = 12;
+      for (var i = 0; i < count; i++) {
         var product = products[i];
         var productDiv = document.createElement("div");
+        var image = [];
+        image[0] = product.image?.[0] || "https://i.ibb.co/Cs8hwmp/cube.png";
+        image[1] = product.image?.[1] || "https://i.ibb.co/SXg5gd2/chart-success.png";
+        image[2] = product.image?.[2] || "https://i.ibb.co/kQ2CXb4/computer.png";
         productDiv.className = "col-md";
         productDiv.innerHTML = `
         <div class="card card-action mb-4" style="height: 100%">
@@ -55,17 +71,17 @@ function addToCart(element) {
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img class="d-block w-100" src="../../assets/img/products/${product.image[0]}" alt="First slide" />
+                        <img class="d-block w-100" src="${image[0]}" alt="First slide" />
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../../assets/img/products/${product.image[1]}" alt="Second slide" />
+                        <img class="d-block w-100" src="${image[1]}" alt="Second slide" />
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../../assets/img/products/${product.image[2]}" alt="Third slide" />
+                        <img class="d-block w-100" src="${image[2]}" alt="Third slide" />
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                       </div>
@@ -82,11 +98,11 @@ function addToCart(element) {
             </div>
             </div>
             <div class="card-body">
-              <span class="product-id" data-id="${product.product_id}"></span>
-              <h5 class="card-text"> ${product.price} đ</h5>
+              <span class="product-id" data-id="${product.productId}"></span>
+              <h5 class="card-text"> ${product.price.toLocaleString("vi-VN")} đ</h5>
               <p class="card-text">${product.description}</p>
               <p class="card-text"><small class="text-muted">Click vào <i class="tf-icons bx bx-fullscreen"></i> để xem chi tiết.</small></p>
-              <a onclick="addToCart(this)"  class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Thêm vào giỏ hàng</a>
+              <a href="../product/"  class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Húp ngay kẻo lỡ!!!</a>
             </div>
         </div>`;
         productsList.appendChild(productDiv);

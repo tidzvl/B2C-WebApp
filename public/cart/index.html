@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/rateyo/rateyo.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/spinkit/spinkit.css" />
 
     <!-- Page CSS -->
 
@@ -169,14 +170,18 @@
                                                     <span>Mã khuyến mãi</span>
                                                     <div class="row g-3 mb-3">
                                                         <div class="col-8 col-xxl-8 col-xl-12">
-                                                            <input type="text" class="form-control"
+                                                            <!-- <input type="text" class="form-control"
                                                                 placeholder="Nhập mã khuyến mãi"
-                                                                aria-label="Enter Promo Code" />
+                                                                aria-label="Enter Promo Code" /> -->
+                                                                <select id="discount-select"
+                                                    class="select2 form-select discount-list" data-allow-clear="true">
+                                                        <!-- <option value="">Select</option> -->
+                                                    </select>
                                                         </div>
                                                         <div class="col-4 col-xxl-4 col-xl-12">
                                                             <div class="d-grid">
                                                                 <button type="button"
-                                                                    class="btn btn-label-primary">Apply</button>
+                                                                    class="btn btn-label-primary apply-discount">Apply</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -257,7 +262,7 @@
                                                                     <i class="bx bx-star"></i>
                                                                     <span class="custom-option-title">Giao nhanh</span>
                                                                     <span
-                                                                        class="badge bg-label-secondary btn-pinned">30.000
+                                                                        class="badge bg-label-secondary btn-pinned">25.000
                                                                         VNĐ</span>
                                                                     <small>Nhận hàng trong 3-4 ngày.</small>
                                                                 </span>
@@ -358,7 +363,7 @@
                                                                 data-bs-toggle="pill" data-bs-target="#pills-cc"
                                                                 type="button" role="tab" aria-controls="pills-cc"
                                                                 aria-selected="true">
-                                                                Thẻ tín dụng/Ghi nợ
+                                                                VNPay / QR Pay
                                                             </button>
                                                         </li>
                                                         <li class="nav-item" role="presentation">
@@ -374,70 +379,36 @@
                                                         <!-- Credit card -->
                                                         <div class="tab-pane fade show active" id="pills-cc"
                                                             role="tabpanel" aria-labelledby="pills-cc-tab">
+                                                            <p>
+                                                                Chúng tôi sẽ tạo cho bạn mã QR, quét hay không là tùy bạn nhưng muốn nhanh thì mở app ngân hàng lên!
+                                                            </p>
                                                             <div class="row g-3">
-                                                                <div class="col-12">
-                                                                    <label class="form-label w-100" for="paymentCard">Mã
-                                                                        thẻ</label>
-                                                                    <div class="input-group input-group-merge">
-                                                                        <input id="paymentCard" name="paymentCard"
-                                                                            class="form-control credit-card-mask"
-                                                                            type="text"
-                                                                            placeholder="1356 3215 6548 7898"
-                                                                            aria-describedby="paymentCard2" required />
-                                                                        <span
-                                                                            class="input-group-text cursor-pointer p-1"
-                                                                            id="paymentCard2"><span
-                                                                                class="card-type"></span></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-6">
-                                                                    <label class="form-label" for="paymentCardName">Họ
-                                                                        và tên</label>
-                                                                    <input type="text" id="paymentCardName"
-                                                                        class="form-control" placeholder="Tin Dep Trai"
-                                                                        required />
-                                                                </div>
-                                                                <div class="col-6 col-md-3">
-                                                                    <label class="form-label"
-                                                                        for="paymentCardExpiryDate">Ngày hết hạn</label>
-                                                                    <input type="text" id="paymentCardExpiryDate"
-                                                                        class="form-control expiry-date-mask"
-                                                                        placeholder="MM/YY" required />
-                                                                </div>
-                                                                <div class="col-6 col-md-3">
-                                                                    <label class="form-label" for="paymentCardCvv">CVV
-                                                                        Code</label>
-                                                                    <div class="input-group input-group-merge">
-                                                                        <input type="text" id="paymentCardCvv"
-                                                                            class="form-control cvv-code-mask"
-                                                                            maxlength="3" placeholder="654" required />
-                                                                        <span class="input-group-text cursor-pointer"
-                                                                            id="paymentCardCvv2"><i
-                                                                                class="bx bx-help-circle text-muted"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top"
-                                                                                title="Card Verification Value"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <label class="switch">
-                                                                        <input type="checkbox" class="switch-input" />
-                                                                        <span class="switch-toggle-slider">
-                                                                            <span class="switch-on"></span>
-                                                                            <span class="switch-off"></span>
-                                                                        </span>
-                                                                        <span class="switch-label">Lưu thẻ cho lần thanh
-                                                                            toán kế tiếp?</span>
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-12">
+                                                                <div class="col-12 button-create">
                                                                     <button type="button"
-                                                                        class="btn btn-primary btn-next me-sm-3 me-1 pay-check">Thanh
-                                                                        toán</button>
-                                                                    <button type="reset"
-                                                                        class="btn btn-label-secondary">Cancel</button>
+                                                                        class="btn btn-primary me-sm-3 me-1 pay-check pay-create"
+                                                                        data-bs-toggle="modal" 
+                                                                        data-bs-target="#youTubeModal" 
+                                                                        >Tạo mã</button>
+                                                                    <button type="reset"  
+                                                                        class="btn btn-primary d-none endgame btn-next">Hoàn tất</button>
                                                                 </div>
                                                             </div>
+                                                            <div class="modal fade" id="youTubeModal" tabindex="-1" aria-labelledby="youTubeModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                  <div class="modal-content">
+                                                                    <div class="d-flex justify-content-center loading-payment">
+                                                                        <div class="spinner-border" style="width: 3rem; height: 3rem; margin-top: 50%;" role="status">
+                                                                            <span class="visually-hidden">Loading...</span>
+                                                                          </div>
+                                                                    </div>
+                                                                    <iframe class="loading-payment-ifame" width="100%" height="700" src=""></iframe>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                                        <button type="button" class="btn btn-primary check-done">Kiểm tra</button>
+                                                                      </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
                                                         </div>
 
                                                         <!-- COD -->
@@ -481,7 +452,7 @@
                                                         </dd>
                                                     </dl>
                                                     <!-- Address Details -->
-                                                    <address>
+                                                    <address class="final-address" id="final-address">
                                                         <span class="fw-medium name"></span><span>,</span><br />
                                                         <span class="that-be-address"></span>
                                                     </address>
@@ -497,7 +468,7 @@
                                                 <h4 class="mt-2">Thank You! 😇</h4>
                                                 <p>Đơn hàng của bạn đã được tạo!</p>
                                                 <p>
-                                                    Chúng tôi sẽ không gửi email xác nhận đến <a class="email"></a> để
+                                                    Chúng tôi sẽ gửi email xác nhận đến <a class="email"></a> để
                                                     bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
                                                     hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
                                                     là
@@ -670,7 +641,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-12 text-center mt-4">
-                                                <button type="submit" class="btn btn-primary me-sm-3 me-1">Đồng
+                                                <button type="submit" class="btn btn-primary me-sm-3 me-1 add-address">Đồng
                                                     ý</button>
                                                 <button type="reset" class="btn btn-label-secondary"
                                                     data-bs-dismiss="modal" aria-label="Close">
@@ -731,6 +702,7 @@
     <script src="../../assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
     <script src="../../assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
     <script src="../../assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+    <script src="../../assets/vendor/libs/block-ui/block-ui.js"></script>
 
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>

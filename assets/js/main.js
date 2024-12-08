@@ -181,7 +181,7 @@ $(document).ready(function() {
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+                      <img src="https://i.ibb.co/g3gSyKF/user-success.png" alt class="rounded-circle avatar-full" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -190,7 +190,7 @@ $(document).ready(function() {
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+                              <img src="https://i.ibb.co/g3gSyKF/user-success.png" alt class="rounded-circle avatar-full" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -259,6 +259,22 @@ $(document).ready(function() {
     `;
   document.querySelector(".navbar").innerHTML = navbar;
 
+
+  async function getAddressDeli() {
+    try{
+      const customerId = JSON.parse(
+        localStorage.getItem("user_data")
+      ).customerId;
+      const response = await fetch("/call/api/address?customerId="+customerId);
+      const data = await response.json();
+      localStorage.setItem("allAddress", JSON.stringify(data.result));
+      return data.result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   setTimeout(function () {
     window.Helpers.initCustomOptionCheck();
   }, 1000);
@@ -274,29 +290,42 @@ $(document).ready(function() {
     }, 0);
   }
   const data_user = JSON.parse(localStorage.getItem("user_data"));
-  console.log(data_user, " NOTE: that being file js/main.js");
+  // console.log(data_user, " NOTE: that being file js/main.js");
   document.querySelectorAll(".name").forEach((element, index) => {
     element.innerHTML = data_user.firstName + " " + data_user.lastName;
   });
   try {
+    document.querySelectorAll('.avatar-full').forEach((element, index) => {
+      element.src = data_user.avatar;
+    });
     document.querySelector(".makhachhang").innerHTML = data_user.customerId;
     document.querySelector(".verified").innerHTML = data_user.citizenId;
-    document.querySelector(".sex").innerHTML = data_user.gender;
-    document.querySelector(".phone").innerHTML = data_user.phone[0];
+    document.querySelector(".sex").innerHTML = data_user.gender == "MALE" ? "Nam" : "Nữ";
+    document.querySelector(".phone").innerHTML = data_user.phone;
     document.querySelector(".email").innerHTML = data_user.email;
+    document.querySelector('.avatar-full').src = data_user.avatar;
     //address
-    document.querySelectorAll(".address").forEach((element, index) => {
-      if (data_user.address[index]) {
-        element.innerHTML = data_user.address[index];
-      }
-    });
+    getAddressDeli().then(data => {
+      var allAddress = document.querySelector(".all-deli-address");
+      data.forEach((element, index) => {
+        if (element) {
+          allAddress.innerHTML += `
+          <li class="timeline-item timeline-item-transparent">
+          <div class="timeline-event">
+          <div class="timeline-header mb-1">
+          <h6 class="mb-0">${element.fullName}</h6>
+          </div>
+          <p class="mb-2 address">${element.phone}</p>
+          <p class="mb-2 address">${element.street + ", " + element.state + ", " + element.city + ", " + element.country}.</p>
+          </div>
+          </li>
+          `
+        }
+      });
+    })
     //get sum of order and points
     // const sum_of_order = 11;
     const sum_of_points = 146;
-    // document.querySelectorAll('.name').innerHTML = data_user.data[0].name;
-    try {
-      document.querySelector(".num-of-invoice").innerHTML = Math.floor(parseInt(localStorage.getItem("number_of_order"))/5);
-    } catch (e) {console.log("Not render sum of invoice");}
     document.querySelector(".points").innerHTML = sum_of_points;
   } catch (e) {
     console.log("That site out of user page");
@@ -313,10 +342,7 @@ $(document).ready(function() {
   let logout = document.getElementById("logout");
   logout.addEventListener("click", function (event) {
     event.preventDefault();
-    localStorage.removeItem("logged_in");
-    localStorage.removeItem("user_data");
-    localStorage.removeItem("overviewData");
-    localStorage.removeItem("menuItemSelected");
+    localStorage.clear();
     setTimeout(function () {
       location.href = "../home/";
     }, 100);

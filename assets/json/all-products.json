@@ -1,7 +1,6 @@
 {
   "data": [
     {
-      "productId": 1,
       "name": "Google Pixel 7",
       "version": "128GB, Just Black",
       "price": 14999000,
@@ -11,13 +10,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "10",
-      "categoryName": "Phone",
+      "stockQuantity": 10,
+      "categoryName": [1],
       "evaluate": "4.7",
       "description": "This is the Google Pixel 7 128GB, Just Black model. It is a sleek black model with a black frame and screen."
     },
     {
-      "productId": 2,
       "name": "Samsung Galaxy Note 20",
       "version": "256GB, Mystic Bronze",
       "price": 21999000,
@@ -27,13 +25,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "8",
-      "categoryName": "Phone",
+      "stockQuantity": 8,
+      "categoryName": [1],
       "evaluate": "4.6",
       "description": "This is the Samsung Galaxy Note 20 256GB, Mystic Bronze model. It is a bronze model with a bronze frame and screen."
     },
     {
-      "productId": 3,
       "name": "Xiaomi Mi 11",
       "version": "128GB, Horizon Blue",
       "price": 16499000,
@@ -43,13 +40,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "20",
-      "categoryName": "Phone",
+      "stockQuantity": 20,
+      "categoryName": [1],
       "evaluate": "4.3",
       "description": "This is the Xiaomi Mi 11 128GB, Horizon Blue model. It is a blue model with a blue frame and screen."
     },
     {
-      "productId": 4,
       "name": "Huawei P50 Pro",
       "version": "256GB, Golden Black",
       "price": 24999000,
@@ -59,13 +55,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "12",
-      "categoryName": "Phone",
+      "stockQuantity": 12,
+      "categoryName": [1],
       "evaluate": "4.5",
       "description": "This is the Huawei P50 Pro 256GB, Golden Black model. It is a luxurious black and gold model with a sleek frame."
     },
     {
-      "productId": 5,
       "name": "Oppo Find X3 Pro",
       "version": "256GB, Gloss Black",
       "price": 22999000,
@@ -75,13 +70,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "18",
-      "categoryName": "Phone",
+      "stockQuantity": 18,
+      "categoryName": [1],
       "evaluate": "4.8",
       "description": "This is the Oppo Find X3 Pro 256GB, Gloss Black model. It features a glossy black finish and an elegant frame."
     },
     {
-      "productId": 6,
       "name": "Realme GT 5G",
       "version": "128GB, Racing Yellow",
       "price": 12499000,
@@ -91,13 +85,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "25",
-      "categoryName": "Phone",
+      "stockQuantity": 25,
+      "categoryName": [1],
       "evaluate": "4.4",
       "description": "This is the Realme GT 5G 128GB, Racing Yellow model. It has a bright yellow design with a premium frame."
     },
     {
-      "productId": 7,
       "name": "Sony Xperia 5 II",
       "version": "128GB, Frosted Black",
       "price": 19999000,
@@ -107,13 +100,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "30",
-      "categoryName": "Phone",
+      "stockQuantity": 30,
+      "categoryName": [1],
       "evaluate": "4.3",
       "description": "This is the Sony Xperia 5 II 128GB, Frosted Black model. It features a frosted black finish with a sleek design."
     },
     {
-      "productId": 8,
       "name": "LG Velvet",
       "version": "128GB, Aurora White",
       "price": 14999000,
@@ -123,13 +115,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "11",
-      "categoryName": "Phone",
+      "stockQuantity": 11,
+      "categoryName": [1],
       "evaluate": "4.2",
       "description": "This is the LG Velvet 128GB, Aurora White model. It has an elegant white finish with a modern frame."
     },
     {
-      "productId": 9,
       "name": "Vivo V21e",
       "version": "128GB, Diamond Flare",
       "price": 10999000,
@@ -139,13 +130,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "22",
-      "categoryName": "Phone",
+      "stockQuantity": 22,
+      "categoryName": [1],
       "evaluate": "4.1",
       "description": "This is the Vivo V21e 128GB, Diamond Flare model. It features a dazzling flare design with a stunning frame."
     },
     {
-      "productId": 10,
       "name": "Motorola Edge 20",
       "version": "128GB, Frosted Grey",
       "price": 15499000,
@@ -155,13 +145,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "17",
-      "categoryName": "Phone",
+      "stockQuantity": 17,
+      "categoryName": [1],
       "evaluate": "4.4",
       "description": "This is the Motorola Edge 20 128GB, Frosted Grey model. It has a modern grey design with a frosted finish."
     },
     {
-      "productId": 11,
       "name": "Xiaomi Poco X3 Pro",
       "version": "128GB, Phantom Black",
       "price": 11999000,
@@ -171,13 +160,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "24",
-      "categoryName": "Phone",
+      "stockQuantity": 24,
+      "categoryName": [1],
       "evaluate": "4.5",
       "description": "This is the Xiaomi Poco X3 Pro 128GB, Phantom Black model. It features a premium black design with a powerful performance."
     },
     {
-      "productId": 12,
       "name": "Asus ROG Phone 5",
       "version": "256GB, Phantom Black",
       "price": 27999000,
@@ -187,13 +175,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "6",
-      "categoryName": "Phone",
+      "stockQuantity": 6,
+      "categoryName": [1],
       "evaluate": "4.9",
       "description": "This is the Asus ROG Phone 5 256GB, Phantom Black model. A gaming phone with high-end performance and black finish."
     },
     {
-      "productId": 13,
       "name": "Nokia 8.3 5G",
       "version": "128GB, Polar Night",
       "price": 16499000,
@@ -203,13 +190,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "20",
-      "categoryName": "Phone",
+      "stockQuantity": 20,
+      "categoryName": [1],
       "evaluate": "4.5",
       "description": "This is the Nokia 8.3 5G 128GB, Polar Night model. It features a stunning polar night finish with advanced 5G support."
     },
     {
-      "productId": 14,
       "name": "Google Pixel 6 Pro",
       "version": "128GB, Stormy Black",
       "price": 22499000,
@@ -219,13 +205,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "14",
-      "categoryName": "Phone",
+      "stockQuantity": 14,
+      "categoryName": [1],
       "evaluate": "4.8",
       "description": "This is the Google Pixel 6 Pro 128GB, Stormy Black model. It features a stormy black design with premium hardware."
     },
     {
-      "productId": 15,
       "name": "Samsung Galaxy S21 Ultra",
       "version": "256GB, Phantom Black",
       "price": 31499000,
@@ -235,13 +220,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "9",
-      "categoryName": "Phone",
+      "stockQuantity": 9,
+      "categoryName": [1],
       "evaluate": "4.7",
       "description": "This is the Samsung Galaxy S21 Ultra 256GB, Phantom Black model. It has an advanced camera and an elegant design."
     },
     {
-      "productId": 16,
       "name": "Xiaomi Redmi Note 10 Pro",
       "version": "128GB, Onyx Gray",
       "price": 9499000,
@@ -251,13 +235,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "35",
-      "categoryName": "Phone",
+      "stockQuantity": 35,
+      "categoryName": [1],
       "evaluate": "4.4",
       "description": "This is the Xiaomi Redmi Note 10 Pro 128GB, Onyx Gray model. It is an affordable option with a sleek design and good performance."
     },
     {
-      "productId": 17,
       "name": "Huawei Mate 40 Pro",
       "version": "256GB, Black",
       "price": 24999000,
@@ -267,13 +250,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "13",
-      "categoryName": "Phone",
+      "stockQuantity": 13,
+      "categoryName": [1],
       "evaluate": "4.6",
       "description": "This is the Huawei Mate 40 Pro 256GB, Black model. It offers a sophisticated black design with an advanced camera setup."
     },
     {
-      "productId": 18,
       "name": "Vivo X60 Pro",
       "version": "128GB, Midnight Black",
       "price": 21499000,
@@ -283,13 +265,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "19",
-      "categoryName": "Phone",
+      "stockQuantity": 19,
+      "categoryName": [1],
       "evaluate": "4.7",
       "description": "This is the Vivo X60 Pro 128GB, Midnight Black model. It combines powerful performance with an elegant design."
     },
     {
-      "productId": 19,
       "name": "OnePlus Nord 2",
       "version": "128GB, Blue Haze",
       "price": 13499000,
@@ -299,13 +280,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "22",
-      "categoryName": "Phone",
+      "stockQuantity": 22,
+      "categoryName": [1],
       "evaluate": "4.5",
       "description": "This is the OnePlus Nord 2 128GB, Blue Haze model. It features a clean blue design with powerful features."
     },
     {
-      "productId": 20,
       "name": "Realme Narzo 30 Pro",
       "version": "128GB, Black",
       "price": 8999000,
@@ -315,13 +295,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "30",
-      "categoryName": "Phone",
+      "stockQuantity": 30,
+      "categoryName": [1],
       "evaluate": "4.2",
       "description": "This is the Realme Narzo 30 Pro 128GB, Black model. A budget-friendly phone with solid performance and a sleek design."
     },
     {
-      "productId": 21,
       "name": "Motorola Moto G100",
       "version": "128GB, Iridescent Cloud",
       "price": 15999000,
@@ -331,13 +310,12 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "16",
-      "categoryName": "Phone",
+      "stockQuantity": 16,
+      "categoryName": [1],
       "evaluate": "4.3",
       "description": "This is the Motorola Moto G100 128GB, Iridescent Cloud model. It features a modern design with a unique iridescent finish."
     },
     {
-      "productId": 22,
       "name": "Google Pixel 6",
       "version": "128GB, Coral",
       "price": 18499000,
@@ -347,8 +325,8 @@
         "iphone-7.png",
         "iphone-8.png"
       ],
-      "stockQuantity": "12",
-      "categoryName": "Phone",
+      "stockQuantity": 12,
+      "categoryName": [1],
       "evaluate": "4.7",
       "description": "This is the Google Pixel 6 128GB, Coral model. It has a vibrant coral finish with a sleek, ergonomic design."
     }

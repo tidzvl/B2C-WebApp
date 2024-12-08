@@ -9,3 +9,5 @@ B2C according to FPT Shop model
 
 -- with ajax, change path to {url: "url of api", dataSrc: "",}
 -- with fetch, fetch("url of api").then((response) => { TODO })
+-- Been edit at backend:
+--- config.setAllowedOrigins(Arrays.asList("*")); // specify allowed origins

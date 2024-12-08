@@ -16,7 +16,44 @@
 
 
 
+
 'use strict';
+
+
+setTimeout(function () {
+  document.querySelector(".add-address").addEventListener('click', function (event) {
+    event.preventDefault();
+    // console.log(document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]);
+    // console.log(document.querySelectorAll(".form-control"));
+    var person = {
+        "fullName": document.querySelectorAll(".form-control")[2].value + " " + document.querySelectorAll(".form-control")[3].value,
+        "phone": document.querySelectorAll(".form-control")[4].value,
+        "email": "john@example.com",
+        "street": document.querySelectorAll(".form-control")[5].value,
+        "city": document.querySelectorAll(".form-control")[6].value,
+        "state": document.querySelectorAll(".form-control")[7].value,
+        "zipCode": "10000",
+        "country": document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]
+    };
+    // console.log(person);
+    var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
+    fetch('/call/api/address?customerId='+customerId, {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(person)
+    }).then((response) => {
+      if (response.ok) {
+        var oldAddress = JSON.parse(localStorage.getItem("allAddress"));
+        oldAddress.push(person);
+        localStorage.setItem("allAddress", JSON.stringify(oldAddress));
+        window.location.href = "../user/";
+      }
+    })
+  })
+
+}, 3000);
 
 // Select2 (jquery)
 $(function () {
