@@ -26,12 +26,12 @@ setTimeout(function () {
     // console.log(document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]);
     // console.log(document.querySelectorAll(".form-control"));
     var person = {
-        "fullName": document.querySelectorAll(".form-control")[2].value + " " + document.querySelectorAll(".form-control")[3].value,
-        "phone": document.querySelectorAll(".form-control")[4].value,
+        "fullName": document.querySelector("#target-lastname").value + " " + document.querySelector("#target-firstname").value,
+        "phone": document.querySelector("#target-phone").value,
         "email": "john@example.com",
-        "street": document.querySelectorAll(".form-control")[5].value,
-        "city": document.querySelectorAll(".form-control")[6].value,
-        "state": document.querySelectorAll(".form-control")[7].value,
+        "street": document.querySelector("#target-address").value,
+        "city": document.querySelector("#city-address").value,
+        "state": document.querySelector("#state-address").value,
         "zipCode": "10000",
         "country": document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]
     };

@@ -54,7 +54,7 @@ $(function () {
         document.querySelector(".num-of-invoice").innerHTML = localStorage.getItem("number_of_order");
         document.querySelector('.email').innerHTML = order.deliveryAddress.email;
         document.querySelector('.phone').innerHTML = order.deliveryAddress.phone;
-        document.querySelector('.address').innerHTML = order.deliveryAddress.street + ', ' + order.deliveryAddress.state + ', ' + order.deliveryAddress.city + ', ' + order.deliveryAddress.country;
+        document.querySelector('.addressOrder').innerHTML = order.deliveryAddress.street + ', ' + order.deliveryAddress.state + ', ' + order.deliveryAddress.city + ', ' + order.deliveryAddress.country;
       } catch (e) {console.log("Not render sum of invoice");}
 
 
