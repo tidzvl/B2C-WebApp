@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   (function () {
     async function AcreateAccount(account) {
       try {
-        const response = await fetch("/call/api/account", {
+        const response = await fetch(ApiHost+"/api/account", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -35,15 +35,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
           body: JSON.stringify(account),
         });
         const data = await response.json();
-        return data.result;
+        return data;
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     }
 
     async function createCustomer(customer) {
       try {
-        const response = await fetch("/call/api/customers", {
+        const response = await fetch(ApiHost+"/api/customers", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,69 +83,80 @@ document.addEventListener("DOMContentLoaded", function (e) {
         };
         try {
           AcreateAccount(createAccount).then((result) => {
-            var customerInfo = {
-              accountId: result.id,
-              firstName: stepsValidation.querySelector("#multiStepsFirstName")
-                .value,
-              lastName: stepsValidation.querySelector("#multiStepsLastName")
-                .value,
-              gender: "MALE",
-              citizenId:
-                stepsValidation.querySelector("#multiStepsPincode").value,
-              birthday: "1990-01-01",
-              email: stepsValidation.querySelector("#multiStepsEmail").value,
-              phone: stepsValidation.querySelector("#multiStepsMobile").value,
-              address:
-                stepsValidation.querySelector("#multiStepsAddress").value +
-                ", " +
-                stepsValidation.querySelector("#multiStepsArea").value +
-                ", " +
-                stepsValidation.querySelector("#multiStepsCity").value +
-                ", " +
-                stepsValidation.querySelector(
-                  "#select2-multiStepsState-container"
-                ).value,
-              avatar: "https://i.ibb.co/g3gSyKF/user-success.png",
-            };
-            createCustomer(customerInfo).then((result) => {
-              // console.log(result);
-              if (result.code == 1000) {
-                Swal.fire({
-                  title: "Successful!",
-                  text: "Tài khoản đã được tạo thành công!",
-                  icon: "success",
-                  customClass: {
-                    confirmButton: "btn btn-primary",
-                  },
-                  buttonsStyling: false,
-                }).then(function (result) {
-                  if (result.value) {
-                    window.location.href = "../login/";
-                  }
-                });
-              } else {
-                Swal.fire({
-                  title: "Error!",
-                  text: " Có lỗi xảy ra, vui lòng thử lại sau!",
-                  icon: "error",
-                  customClass: {
-                    confirmButton: "btn btn-primary",
-                  },
-                  buttonsStyling: false,
-                });
-              }
-            });
+            if (result.message == "Account created successfully") {
+              var customerInfo = {
+                accountId: result.id,
+                firstName: stepsValidation.querySelector("#multiStepsFirstName")
+                  .value,
+                lastName: stepsValidation.querySelector("#multiStepsLastName")
+                  .value,
+                gender: "MALE",
+                citizenId:
+                  stepsValidation.querySelector("#multiStepsPincode").value,
+                birthday: "1990-01-01",
+                email: stepsValidation.querySelector("#multiStepsEmail").value,
+                phone: stepsValidation.querySelector("#multiStepsMobile").value,
+                address:
+                  stepsValidation.querySelector("#multiStepsAddress").value +
+                  ", " +
+                  stepsValidation.querySelector("#multiStepsArea").value +
+                  ", " +
+                  stepsValidation.querySelector("#multiStepsCity").value +
+                  ", " +
+                  stepsValidation.querySelector(
+                    "#select2-multiStepsState-container"
+                  ).value,
+                avatar: "https://i.ibb.co/g3gSyKF/user-success.png",
+              };
+              createCustomer(customerInfo).then((result) => {
+                // console.log(result);
+                if (result.code == 1000) {
+                  $(".authentication-wrapper").unblock();
+                  Swal.fire({
+                    title: "Successful!",
+                    text: "Tài khoản đã được tạo thành công!",
+                    icon: "success",
+                    customClass: {
+                      confirmButton: "btn btn-primary",
+                    },
+                    buttonsStyling: false,
+                  }).then(function (result) {
+                    if (result.value) {
+                      window.location.href = "../login/";
+                    }
+                  });
+                } else {
+                  $(".authentication-wrapper").unblock();
+                  Swal.fire({
+                    title: "Error!",
+                    text: " Có lỗi xảy ra, vui lòng thử lại sau!",
+                    icon: "error",
+                    customClass: {
+                      confirmButton: "btn btn-primary",
+                    },
+                    buttonsStyling: false,
+                  });
+                }
+              });
+            }else{
+              $(".authentication-wrapper").unblock();
+              Swal.fire({
+                title: "Error!",
+                text: "Tên đăng nhập đã tồn tại!",
+                icon: "error",
+                customClass: {
+                  confirmButton: "btn btn-primary",
+                },
+                buttonsStyling: false,
+              }).then(function (result) {
+                if (result.value) {
+                  window.location.reload();
+                }
+              });
+            }
           });
         } catch (error) {
-          Swal.fire({
-            title: "Error!",
-            text: " Có lỗi xảy ra, vui lòng thử lại sau!",
-            icon: "error",
-            customClass: {
-              confirmButton: "btn btn-primary",
-            },
-            buttonsStyling: false,
-          });
+          console.log(error);
         }
       });
     if (typeof stepsValidation !== undefined && stepsValidation !== null) {

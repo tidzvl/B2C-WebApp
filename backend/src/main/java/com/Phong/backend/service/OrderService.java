@@ -80,12 +80,19 @@ public class OrderService {
         order.setDeliveryAddress(deliveryAddress);
         order.setOrderDate(java.time.LocalDateTime.now());
         order.setStatus("Not Started");
+        order.setDeliveryDate(java.time.LocalDateTime.now().plusDays(3));
 
         double totalPrice = 0;
         double totalDiscount = 0;
 
         for (int i = 0; i < selectedCartItems.size(); i++) {
             CartItem cartItem = selectedCartItems.get(i);
+
+            if (cartItem.getProduct().getStockQuantity() < cartItem.getQuantity()) {
+                throw new RuntimeException("Insufficient stock for product: "
+                        + cartItem.getProduct().getName());
+            }
+
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setOrder(order);
             orderDetail.setProduct(cartItem.getProduct());

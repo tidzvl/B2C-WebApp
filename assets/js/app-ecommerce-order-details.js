@@ -21,7 +21,7 @@ $(function () {
   if(!order_id) window.location.href = "../order/";
 
   if (dt_details_table.length) {
-    fetch('/call/api/order/details?id=' + order_id)
+    fetch(ApiHost+'/api/order/details?id=' + order_id)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");

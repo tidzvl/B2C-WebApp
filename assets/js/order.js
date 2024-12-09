@@ -24,7 +24,7 @@ setTimeout(function () {
         localStorage.getItem("user_data")
       ).customerId;
       const response = await fetch(
-        "/call/api/order/all?customerId=" + customerId
+        ApiHost+"/api/order/all?customerId=" + customerId
       );
       const data = await response.json();
       return data.result;

@@ -1,13 +1,11 @@
 package com.Phong.backend.exception;
 
 import java.util.Map;
-import java.util.Objects;
-
-import jakarta.validation.ConstraintViolation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,13 +20,14 @@ public class GlobalExceptionHandler {
 
     private static final String MIN_ATTRIBUTE = "min";
 
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<ApiResponse> handlingRuntimeException(Exception exception) {
-        log.error("Exception: ", exception);
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setCode(ErrorCode.UNCATEGORIZED_EXCEPTION.getCode());
-        apiResponse.setMessage(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleGeneralException(Exception ex) {
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .code(500)
+                .message("An error occurred: " + ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = AppException.class)
@@ -40,35 +39,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
     }
 
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    ResponseEntity<ApiResponse> handlingValidation(MethodArgumentNotValidException exception) {
-        String enumKey = exception.getFieldError().getDefaultMessage();
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Void>> handleValidationException(MethodArgumentNotValidException ex) {
 
-        ErrorCode errorCode = ErrorCode.INVALID_KEY;
-        Map<String, Object> attributes = null;
+        String errorMessage = ex.getBindingResult().getFieldErrors().stream()
+                .findFirst()
+                .map(FieldError::getDefaultMessage)
+                .orElse("Validation error");
 
-        try {
-            errorCode = ErrorCode.valueOf(enumKey);
-            var constraintViolation =
-                    exception.getBindingResult().getAllErrors().getFirst().unwrap(ConstraintViolation.class);
+        ApiResponse<Void> response =
+                ApiResponse.<Void>builder().code(400).message(errorMessage).build();
 
-            attributes = constraintViolation.getConstraintDescriptor().getAttributes();
-
-            log.info(attributes.toString());
-
-        } catch (IllegalArgumentException e) {
-
-        }
-
-        ApiResponse apiResponse = new ApiResponse();
-
-        apiResponse.setCode(errorCode.getCode());
-        apiResponse.setMessage(
-                Objects.nonNull(attributes)
-                        ? mapAttribute(errorCode.getMessage(), attributes)
-                        : errorCode.getMessage());
-
-        return ResponseEntity.badRequest().body(apiResponse);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = AccessDeniedException.class)

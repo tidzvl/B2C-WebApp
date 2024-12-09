@@ -2,6 +2,8 @@
  * Main - Front Pages
  */
 'use strict';
+let ApiHost = 'http://localhost:8080';
+
 
 let isRtl = window.Helpers.isRtl(),
   isDarkStyle = window.Helpers.isDarkStyle();

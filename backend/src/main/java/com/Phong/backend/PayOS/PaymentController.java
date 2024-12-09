@@ -244,6 +244,8 @@ public class PaymentController {
                 }
                 loyaltyService.addPoints(invoice.getCustomer().getCustomerId(), invoice.getTotalAmount());
             }
+            response.put("code", 1000);
+            response.put("message", "success");
             return response;
         } catch (Exception e) {
             e.printStackTrace();

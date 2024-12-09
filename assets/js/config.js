@@ -1,5 +1,6 @@
 'use strict';
 
+
 let config = {
   colors: {
     primary: '#5a8dee',

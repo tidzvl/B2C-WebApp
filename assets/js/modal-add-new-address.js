@@ -20,15 +20,14 @@
 'use strict';
 
 
+
 setTimeout(function () {
   document.querySelector(".add-address").addEventListener('click', function (event) {
     event.preventDefault();
-    // console.log(document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]);
-    // console.log(document.querySelectorAll(".form-control"));
     var person = {
         "fullName": document.querySelector("#target-lastname").value + " " + document.querySelector("#target-firstname").value,
         "phone": document.querySelector("#target-phone").value,
-        "email": "john@example.com",
+        "email": JSON.parse(localStorage.getItem("user_data")).email,
         "street": document.querySelector("#target-address").value,
         "city": document.querySelector("#city-address").value,
         "state": document.querySelector("#state-address").value,
@@ -37,7 +36,7 @@ setTimeout(function () {
     };
     // console.log(person);
     var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
-    fetch('/call/api/address?customerId='+customerId, {
+    fetch(ApiHost+'/api/address?customerId='+customerId, {
       method: 'POST',
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -45,11 +44,86 @@ setTimeout(function () {
       body: JSON.stringify(person)
     }).then((response) => {
       if (response.ok) {
-        var oldAddress = JSON.parse(localStorage.getItem("allAddress"));
-        oldAddress.push(person);
-        localStorage.setItem("allAddress", JSON.stringify(oldAddress));
-        window.location.href = "../user/";
+        // var oldAddress = JSON.parse(localStorage.getItem("allAddress"));
+        // oldAddress.push(person);
+        // localStorage.setItem("allAddress", JSON.stringify(oldAddress));
+        // window.location.href = "../user/";
+        fetch(ApiHost+'/api/address?customerId='+customerId).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              localStorage.setItem("allAddress", JSON.stringify(data.result));
+              window.location.reload();
+            })
+          }
+        })
       }
+    })
+  })
+
+  document.querySelector(".change-address").addEventListener('click', function (event) {
+    event.preventDefault();
+    var person = {
+        "fullName": document.querySelector("#target-lastname").value + " " + document.querySelector("#target-firstname").value,
+        "phone": document.querySelector("#target-phone").value,
+        "email": JSON.parse(localStorage.getItem("user_data")).email,
+        "street": document.querySelector("#target-address").value,
+        "city": document.querySelector("#city-address").value,
+        "state": document.querySelector("#state-address").value,
+        "zipCode": "10000",
+        "country": document.querySelector("#select2-modalAddressCountry-container").innerText.split("\n")[1]
+    };
+    // console.log(person);
+    var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
+    var edit_id = parseInt(localStorage.getItem("edit_id"));
+    fetch(ApiHost+'/api/address/'+edit_id, {
+      method: 'PATCH',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(person)
+    }).then((response) => {
+      if (response.ok) {
+        fetch(ApiHost+'/api/address?customerId='+customerId).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              localStorage.setItem("allAddress", JSON.stringify(data.result));
+              Swal.fire({
+                title: "Thay đổi thành công!",
+                text: "Thông tin nhận hàng của bạn đã được thay đổi!",
+                icon: "success",
+                customClass: {
+                  confirmButton: "btn btn-primary",
+                },
+                buttonsStyling: false,
+              }).then(function (result) {
+                window.location.reload();
+              })
+            })
+          }
+        })
+      }
+    })
+  })
+
+
+  document.querySelectorAll(".form-check.custom-option.custom-option-basic").forEach((element) => {
+    element.querySelector(".edit-address").addEventListener('click', function (event) {
+      event.preventDefault();
+      var edit_id = element.querySelector(".custom-option-body").getAttribute("id");
+      localStorage.setItem("edit_id", edit_id);
+      var address_edit = JSON.parse(localStorage.getItem("allAddress")).find((item) => item.id == edit_id);
+      console.log(address_edit);
+      document.querySelector("#target-lastname").value = address_edit.fullName.split(" ")[1];
+      document.querySelector("#target-firstname").value = address_edit.fullName.split(" ")[0];
+      document.querySelector("#target-phone").value = address_edit.phone;
+      document.querySelector("#target-address").value = address_edit.street;
+      document.querySelector("#city-address").value = address_edit.city;
+      document.querySelector("#state-address").value = address_edit.state;
+      document.querySelector("#select2-modalAddressCountry-container").innerText = address_edit.country;
+      document.querySelector("#select2-modalAddressCountry-container").setAttribute("title", address_edit.country);
+      document.querySelector(".add-address").classList.add("d-none");
+      document.querySelector(".change-address").classList.remove("d-none");
+
     })
   })
 

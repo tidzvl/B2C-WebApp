@@ -13,10 +13,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountCreationRequest {
-    @Size(min = 9, max = 24, message = "USERNAME_INVALID")
+    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
     String username;
 
-    @Size(min = 8, message = "INVALID_PASSWORD")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
     String password;
 
     Role role;

@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/rateyo/rateyo.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/spinkit/spinkit.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/animate-css/animate.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
     <!-- Page CSS -->
 
@@ -235,8 +237,8 @@
                                                 <p class="mt-2">Chọn phương thức vận chuyển</p>
                                                 <div class="row">
                                                     <div class="col-md mb-md-0 mb-2">
-                                                        <div
-                                                            class="form-check custom-option custom-option-icon position-relative checked">
+                                                        <div tabindex="-1"
+                                                            class="form-check custom-option custom-option-icon position-relative disabled" aria-disabled="true" disabled>
                                                             <label class="form-check-label custom-option-content"
                                                                 for="customRadioDelivery1">
                                                                 <span class="custom-option-body">
@@ -245,17 +247,17 @@
                                                                         Express</span>
                                                                     <span
                                                                         class="badge bg-label-success btn-pinned">FREE</span>
-                                                                    <small>Nhận hàng trong 1 tuần.</small>
+                                                                    <small>Mỗi tội không khả dụng 😢.</small>
                                                                 </span>
-                                                                <input name="customRadioIcon" class="form-check-input"
-                                                                    type="radio" value="" id="customRadioDelivery1"
-                                                                    checked="" />
+                                                                <input name="customRadioIcon" class="form-check-input disabled"
+                                                                    type="radio" value="" id="customRadioDelivery1" tabindex="-1" aria-disabled="true" disabled
+                                                                    />
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md mb-md-0 mb-2">
                                                         <div
-                                                            class="form-check custom-option custom-option-icon position-relative">
+                                                            class="form-check custom-option custom-option-icon position-relative checked">
                                                             <label class="form-check-label custom-option-content"
                                                                 for="customRadioDelivery2">
                                                                 <span class="custom-option-body">
@@ -267,7 +269,7 @@
                                                                     <small>Nhận hàng trong 3-4 ngày.</small>
                                                                 </span>
                                                                 <input name="customRadioIcon" class="form-check-input"
-                                                                    type="radio" value="" id="customRadioDelivery2" />
+                                                                    type="radio" value="" id="customRadioDelivery2" checked="" />
                                                             </label>
                                                         </div>
                                                     </div>
@@ -420,7 +422,7 @@
                                                                 hàng thay vì trả trước.
                                                             </p>
                                                             <button type="button"
-                                                                class="btn btn-primary btn-next pay-check">Thanh
+                                                                class="btn btn-primary btn-next pay-check pay-cod">Thanh
                                                                 toán</button>
                                                         </div>
                                                     </div>
@@ -464,19 +466,16 @@
                                     <!-- Confirmation -->
                                     <div id="checkout-confirmation" class="content">
                                         <div class="row mb-3">
-                                            <div class="col-12 col-lg-8 mx-auto text-center mb-3">
-                                                <h4 class="mt-2">Thank You! 😇</h4>
-                                                <p>Đơn hàng của bạn đã được tạo!</p>
-                                                <p>
-                                                    Chúng tôi sẽ gửi email xác nhận đến <a class="email"></a> để
-                                                    bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
-                                                    hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
-                                                    là
-                                                    bài học đầu đời.
+                                            <div class="col-12 col-lg-8 mx-auto text-center mb-3 end-content">
+                                                <div class="spinner-border spin-content" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                                <h4 class="mt-2 noti-title"></h4>
+                                                <p class="noti-sub-title"></p>
+                                                <p class="noti-content">
                                                 </p>
                                                 <p>
-                                                    <span class="fw-medium"><i class="bx bx-time-five"></i> Thời gian
-                                                        đặt:
+                                                    <span class="fw-medium"><i class="bx bx-time-five"></i> Thời gian:
                                                     </span> <span class="time"></span>
                                                 </p>
                                             </div>
@@ -643,6 +642,7 @@
                                             <div class="col-12 text-center mt-4">
                                                 <button type="submit" class="btn btn-primary me-sm-3 me-1 add-address">Đồng
                                                     ý</button>
+                                                    <button type="submit" class="d-none btn btn-primary me-sm-3 me-1 change-address">Thay đổi</button>
                                                 <button type="reset" class="btn btn-label-secondary"
                                                     data-bs-dismiss="modal" aria-label="Close">
                                                     Hủy
@@ -703,6 +703,8 @@
     <script src="../../assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
     <script src="../../assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
     <script src="../../assets/vendor/libs/block-ui/block-ui.js"></script>
+    <script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+
 
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>

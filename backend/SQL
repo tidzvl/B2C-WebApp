@@ -1,0 +1,160 @@
+CREATE TABLE Account (
+    AccountId UUID PRIMARY KEY,
+    userName VARCHAR(255) COLLATE utf8mb4_unicode_ci UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('ADMIN', 'PERSONNEL', 'CUSTOMER') NOT NULL
+);
+
+CREATE TABLE Customer (
+    customerId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    AccountId UUID UNIQUE,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Gender ENUM('MALE', 'FEMALE'),
+    citizenId VARCHAR(12) UNIQUE NOT NULL,
+    Birthday DATE NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Phone VARCHAR(10) UNIQUE NOT NULL,
+    Address VARCHAR(255),
+    Avatar VARCHAR(255),
+    FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
+);
+
+CREATE TABLE Avatar (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    url VARCHAR(255),
+    cloudinaryId VARCHAR(255),
+    uploadedBy BIGINT,
+    data LONGBLOB,
+    FOREIGN KEY (uploadedBy) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE Address (
+    addressId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    customerId BIGINT NOT NULL,
+    fullName VARCHAR(255),
+    phone VARCHAR(10),
+    email VARCHAR(255),
+    street VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    zipCode VARCHAR(20),
+    country VARCHAR(255),
+    FOREIGN KEY (customerId) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE Loyalty (
+    loyaltyId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    customer_id BIGINT NOT NULL,
+    points INT NOT NULL,
+    accumulationNumber INT NOT NULL,
+    CreateAt DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE Invoice (
+    id UUID PRIMARY KEY,
+    address_id BIGINT,
+    order_id UUID,
+    customer_id BIGINT,
+    sellerName VARCHAR(255) NOT NULL DEFAULT 'IT HOSPITAL',
+    sellerAddress VARCHAR(255) NOT NULL DEFAULT 'HCMUT',
+    sellerPhone VARCHAR(10) NOT NULL DEFAULT '0944102246',
+    website VARCHAR(255),
+    status ENUM('PENDING', 'CANCELLED', 'PAID'),
+    paymentMethod ENUM('COD', 'BANK'),
+    createdAt DATETIME,
+    totalLoyalty DOUBLE,
+    totalDiscount DOUBLE,
+    totalPrice DOUBLE,
+    shippingFee DOUBLE,
+    totalAmount DOUBLE,
+    FOREIGN KEY (address_id) REFERENCES Address(addressId),
+    FOREIGN KEY (order_id) REFERENCES orders(orderId),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE InvoiceDetail (
+    invoiceDetailId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    invoice_id UUID NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    unitPrice DOUBLE NOT NULL,
+    totalPrice DOUBLE NOT NULL,
+    FOREIGN KEY (invoice_id) REFERENCES Invoice(id),
+    FOREIGN KEY (product_id) REFERENCES Product(productId)
+);
+
+CREATE TABLE orders (
+    orderId UUID PRIMARY KEY,
+    customer_id BIGINT NOT NULL,
+    totalLoyalty DOUBLE,
+    totalPrice DOUBLE,
+    totalDiscount DOUBLE,
+    shippingFee DOUBLE,
+    totalAmount DOUBLE,
+    orderDate DATETIME NOT NULL,
+    deliveryDate DATETIME,
+    status VARCHAR(50),
+    address_id BIGINT,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customerId),
+    FOREIGN KEY (address_id) REFERENCES Address(addressId)
+);
+
+CREATE TABLE OrderDetail (
+    orderDetailId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id UUID NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    price DOUBLE NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(orderId),
+    FOREIGN KEY (product_id) REFERENCES Product(productId)
+);
+
+CREATE TABLE Product (
+    productId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DOUBLE NOT NULL,
+    origin VARCHAR(255),
+    version VARCHAR(255),
+    evaluate VARCHAR(255),
+    stockQuantity INT NOT NULL,
+    quantitySold INT NOT NULL,
+    category_id BIGINT,
+    FOREIGN KEY (category_id) REFERENCES Category(categoryId)
+);
+
+CREATE TABLE Category (
+    categoryId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE Discount (
+    discountId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    discountValue DOUBLE NOT NULL,
+    startDate DATETIME NOT NULL,
+    endDate DATETIME NOT NULL
+);
+
+CREATE TABLE discount_products (
+    discount_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    PRIMARY KEY (discount_id, product_id),
+    FOREIGN KEY (discount_id) REFERENCES Discount(discountId),
+    FOREIGN KEY (product_id) REFERENCES Product(productId)
+);
+
+CREATE TABLE ProductImage (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_id BIGINT NOT NULL,
+    url VARCHAR(255),
+    cloudinaryId VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES Product(productId)
+);
+
+

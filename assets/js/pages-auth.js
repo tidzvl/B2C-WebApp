@@ -26,7 +26,7 @@ $("#login-button").click(function (event) {
   var pwd = document.getElementById("password").value;
   async function checkContain(userName) {
     try {
-      const response = await fetch('/call/api/customers');
+      const response = await fetch(ApiHost+'/api/customers');
       const data = await response.json();
       const result = data.result.find((user) => user.email === userName || user.phone === userName);
       return result;

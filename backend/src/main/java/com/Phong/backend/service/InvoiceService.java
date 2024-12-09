@@ -61,7 +61,7 @@ public class InvoiceService {
         invoice.setTotalPrice(order.getTotalPrice());
         invoice.setTotalAmount(order.getTotalAmount());
         invoice.setPaymentMethod(PaymentMethod.COD);
-        invoice.setStatus(InvoiceStatus.IN_PROGRESS);
+        invoice.setStatus(InvoiceStatus.PENDING);
         invoice.setCreatedAt(new Date());
         invoice.setCustomer(order.getCustomer());
         invoice.setTotalDiscount(order.getTotalDiscount());

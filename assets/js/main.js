@@ -28,6 +28,8 @@ let isRtl = window.Helpers.isRtl(),
   menu,
   animate,
   isHorizontalLayout = false;
+  let ApiHost = 'http://localhost:8080';
+
 
 if (document.getElementById("layout-menu")) {
   isHorizontalLayout = document
@@ -265,7 +267,7 @@ $(document).ready(function() {
       const customerId = JSON.parse(
         localStorage.getItem("user_data")
       ).customerId;
-      const response = await fetch("/call/api/address?customerId="+customerId);
+      const response = await fetch(ApiHost+"/api/address?customerId="+customerId);
       const data = await response.json();
       localStorage.setItem("allAddress", JSON.stringify(data.result));
       return data.result;

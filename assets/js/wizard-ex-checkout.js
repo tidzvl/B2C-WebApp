@@ -38,11 +38,33 @@ $(function () {
 
 
 setTimeout(function () {
+
+  function calcNewPrice(){
+    try{
+      var qty_price = document.querySelectorAll('.qty-price');
+      console.log(qty_price);
+      var totalPrice = 0;
+      var discount = document.querySelector('.total-discount').innerHTML.split(' ')[0].replaceAll('.','');
+      qty_price.forEach((item) => {
+        var product_price = item.querySelector('.price-product').innerHTML.split(' ')[0].replaceAll('.','');
+        var product_qty = item.querySelector('.qty-product').value;
+        totalPrice += parseInt(product_price) * parseInt(product_qty);
+      })
+      $('.total-price').html(totalPrice.toLocaleString('vi-VN') + ' VNĐ');
+      var price_been_discount = totalPrice - parseInt(discount);
+      $('.total-all').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
+      $('.total-pay').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   async function putQty(productId, newQty) {
     try {
       var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
+      calcNewPrice();
       const response = await fetch(
-        "/call/api/cart/quantity?cartId=" +
+        ApiHost+"/api/cart/quantity?cartId=" +
           customerId +
           "&productId=" +
           productId,
@@ -66,6 +88,7 @@ setTimeout(function () {
     .forEach((element) => {
       element.addEventListener("input", (e) => {
         const newValue = e.target.value;
+        element.setAttribute("value", newValue);
         // console.log(e.target.attributes['data-id'].value);
         // console.log(
         //   "id input: " +
@@ -174,7 +197,7 @@ setTimeout(function () {
         var addId = parseInt(JSON.parse(localStorage.getItem("allAddress"))[0].id);
       }else addId = parseInt(document.querySelector(".final-address").id)
       // console.log(JSON.parse(localStorage.getItem("CartAndDiscount")));
-      const response = await fetch("/call/api/order/create", {
+      const response = await fetch(ApiHost+"/api/order/create", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -196,7 +219,7 @@ setTimeout(function () {
   async function createPayment(orderid) {
     try {
       const response = await fetch(
-        "/call/api/payment/create?orderId=" + orderid,
+        ApiHost+"/api/payment/create?orderId=" + orderid,
         {
           method: "POST",
           headers: {
@@ -209,12 +232,34 @@ setTimeout(function () {
       console.error(error);
     }
   }
+
+  async function createInvoice(orderid) {
+    try {
+      const response = await fetch(
+        ApiHost+"/api/invoice",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            orderId: orderid,
+          }),
+        }
+      );
+      localStorage.removeItem("order_id");
+      return response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function CheckPayment() {
     try {
       var orderCode = parseInt(localStorage.getItem("orderCode"));
       var orderid = localStorage.getItem("order_id");
       const response = await fetch(
-        "/call/api/payment?orderCode=" + orderCode + "&orderId=" + orderid
+        ApiHost+"/api/payment?orderCode=" + orderCode + "&orderId=" + orderid
       );
       return response.json();
     } catch (error) {
@@ -228,7 +273,7 @@ setTimeout(function () {
       // console.log("Đang kiểm tra!");
       createOrder().then((data) => {
         console.log(data);
-        if (data.code == 1000) {
+        if (data.message == "Order created successfully") {
           //that is running ok
           var orderid = data.result.orderId;
           localStorage.setItem("order_id", orderid);
@@ -244,6 +289,11 @@ setTimeout(function () {
               localStorage.setItem("orderCode", data.data.orderCode);
             }
           });
+        }else{
+          document.querySelector(".loading-payment-ifame").src = "https://i.ibb.co/KDKxFdn/hetvip.png"
+              document
+                .querySelector(".loading-payment")
+                .classList.add("d-none");
         }
       });
     });
@@ -257,10 +307,68 @@ setTimeout(function () {
           document.querySelector(".loading-payment-ifame").src =
             "https://i.ibb.co/4J2R4BN/vippro.png";
           document.querySelector(".endgame").classList.remove("d-none");
+          localStorage.removeItem("order_id");
         } else {
           console.log(data.message);
         }
       });
+    });
+
+  document
+    .querySelector(".pay-cod")
+    .addEventListener("click", function (event) {
+      var order_id = localStorage.getItem("order_id");
+      var content = document.querySelector('.end-content');
+      if(order_id){
+        createInvoice(order_id).then((data) => {
+          console.log(data);
+          //Success noti
+          content.querySelector('.spin-content').classList.add('d-none');
+          content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
+          content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+          var email = JSON.parse(localStorage.getItem("user_data")).email;
+          content.querySelector('.noti-content').innerHTML = `
+                                                    Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
+                                                    bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
+                                                    hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
+                                                    là
+                                                    bài học đầu đời.`;
+          //
+        });
+      }else{
+        console.log("Chua tao don hang");
+        createOrder().then((data) => {
+          console.log(data);
+          if (data.message == "Order created successfully") {
+            //Success noti
+            content.querySelector('.spin-content').classList.add('d-none');
+            content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
+            content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+            var email = JSON.parse(localStorage.getItem("user_data")).email;
+            content.querySelector('.noti-content').innerHTML = `
+                                                      Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
+                                                      bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
+                                                      hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
+                                                      là
+                                                      bài học đầu đời.`;
+            //
+            var orderid = data.result.orderId;
+            localStorage.setItem("order_id", orderid);
+            createInvoice(orderid).then((data) => {
+              console.log(data);
+            });
+          }else if(data.message == "Error creating order: No items selected for order") {
+            //Fail noti
+            content.querySelector('.spin-content').classList.add('d-none');
+            content.querySelector('.noti-title').innerHTML = "OH NOOOOO! 😢";
+            content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn chưa có gì trong đó mà!!!";
+            content.querySelector('.noti-content').innerHTML = `
+              Hãy truy cập vào <a href="../product/">đây</a> để lựa chọn sản phẩm phù hợp với mình bạn nhé!
+            `
+            //
+          }
+        });
+      }
     });
 }, 3000);
 
@@ -269,7 +377,7 @@ $(function () {
   async function getData(customerId) {
     try {
       const response = await fetch(
-        "/call/api/cart/allItems?customerId=" + customerId
+        ApiHost+"/api/cart/allItems?customerId=" + customerId
       );
       const data = await response.json();
       // console.log(data);
@@ -280,7 +388,7 @@ $(function () {
   }
   async function getProducts(id) {
     try {
-      const response = await fetch("/call/api/products/" + id);
+      const response = await fetch(ApiHost+"/api/products/" + id);
       const data = await response.json();
       // console.log(data);
       return data;
@@ -290,7 +398,7 @@ $(function () {
   }
   async function getDiscount() {
     try {
-      const response = await fetch("/call/api/discounts/all");
+      const response = await fetch(ApiHost+"/api/discounts/all");
       const data = await response.json();
       // console.log(data);
       return data;
@@ -336,7 +444,7 @@ $(function () {
                       alt="${image}" class="w-px-100" />
               </div>
               <div class="flex-grow-1">
-                  <div class="row">
+                  <div class="row qty-price">
                       <div class="col-md-8">
                           <h6 class="me-3">
                               <a href="javascript:void(0)"
@@ -461,6 +569,7 @@ $(function () {
     });
     //--!loop
     document.querySelector(".spinner-border").setAttribute("hidden", "true");
+    $(".layout-wrapper").unblock();
   });
   //--!end gio hang
 
@@ -574,9 +683,8 @@ $(function () {
                       Mobile : ${element.phone} </small>
                   <span class="my-3 border-bottom d-block"></span>
                   <span class="d-flex">
-                      <a class="me-2"
-                          href="javascript:void(0)">Edit</a>
-                      <a href="javascript:void(0)">Remove</a>
+                      <a class="me-2 edit-address"
+                          data-bs-toggle="modal" data-bs-target="#addNewAddress"">Edit</a>
                   </span>
               </span>
           </label>

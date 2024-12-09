@@ -4,6 +4,7 @@
 
 "use strict";
 
+
 //BEGIN CALL ADD TO CART API
 
 function addToCart(element) {
@@ -20,7 +21,7 @@ function addToCart(element) {
 
   async function getData(){
     try{
-      const response = await fetch("/call/api/products/all");
+      const response = await fetch(ApiHost+"/api/products/all");
       const data = await response.json();
       // console.log(data);
       return data.result;
@@ -43,9 +44,12 @@ function addToCart(element) {
         var product = products[i];
         var productDiv = document.createElement("div");
         var image = [];
-        image[0] = product.image?.[0] || "https://i.ibb.co/Cs8hwmp/cube.png";
-        image[1] = product.image?.[1] || "https://i.ibb.co/SXg5gd2/chart-success.png";
-        image[2] = product.image?.[2] || "https://i.ibb.co/kQ2CXb4/computer.png";
+        if(product.images.length == 0) image = Array.from({length: 3}, () => "https://i.ibb.co/Cs8hwmp/cube.png");
+        else {
+          image = product.images.slice(0, 3).map(function(img) {
+            return img.url;
+          });
+        }
         productDiv.className = "col-md";
         productDiv.innerHTML = `
         <div class="card card-action mb-4" style="height: 100%">
@@ -70,21 +74,13 @@ function addToCart(element) {
                         aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="${image[0]}" alt="First slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="${image[1]}" alt="Second slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="${image[2]}" alt="Third slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
+                      ${image.map(function(img, index) {
+                        return `
+                          <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img class="d-block w-100" src="${img}" alt="Slide ${index + 1}" />
+                          </div>
+                        `;
+                      }).join('')}
                     </div>
                   </div>    
         <div class="card-header">
@@ -92,7 +88,9 @@ function addToCart(element) {
             <div class="card-action-element">
                 <ul class="list-inline mb-0">
                 <li class="list-inline-item">
-                    <a href="javascript:void(0);" class="card-expand"><i class="tf-icons bx bx-fullscreen"></i></a>
+                    <p>
+                      <span class="badge badge-center rounded-pill bg-label-primary">${product.stockQuantity}</span>
+                    </p>
                 </li>
                 </ul>
             </div>
@@ -101,7 +99,7 @@ function addToCart(element) {
               <span class="product-id" data-id="${product.productId}"></span>
               <h5 class="card-text"> ${product.price.toLocaleString("vi-VN")} đ</h5>
               <p class="card-text">${product.description}</p>
-              <p class="card-text"><small class="text-muted">Click vào <i class="tf-icons bx bx-fullscreen"></i> để xem chi tiết.</small></p>
+              <p class="card-text"><small class="text-muted">Số lượng đã bán: ${product.quantitySold || 0}</small></p>
               <a href="../product/"  class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Húp ngay kẻo lỡ!!!</a>
             </div>
         </div>`;

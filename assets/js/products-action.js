@@ -37,7 +37,7 @@ function addToCart(element) {
   }; //default is success
   //check if out of stock -> noti type is error and text is out of stock
   var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
-  fetch("/call/api/cart/add?customerId=" + customerId + "&productId=" + id + "&quantity=1", {
+  fetch(ApiHost+"/api/cart/add?customerId=" + customerId + "&productId=" + id + "&quantity=1", {
     method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -128,7 +128,7 @@ $(document).ready(function () {
   async function filterProducts(category, brand, os, to) {
     try{
       // console.log(category, brand, os, to);
-      const response = await fetch("/call/api/products/filter?category="+category+"&version="+os+"&origin="+brand+"&maxPrice="+to);
+      const response = await fetch(ApiHost+"/api/products/filter?category="+category+"&version="+os+"&origin="+brand+"&maxPrice="+to);
       const data = await response.json();
       // console.log(data);
       return data;
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
   async function getProducts() {
     try {
-      const response = await fetch("/call/api/products/all");
+      const response = await fetch(ApiHost+"/api/products/all");
       const data = await response.json();
       // console.log(data);
       return data.result;
@@ -189,8 +189,12 @@ $(document).ready(function () {
         var productDiv = document.createElement("div");
         productDiv.className = "col-md";
         var image = [];
-        if(!product.image) image = Array.from({length: 3}, () => "https://i.ibb.co/Cs8hwmp/cube.png");
-        else image = product.image.slice(0, 3);
+        if(product.images.length == 0) image = Array.from({length: 3}, () => "https://i.ibb.co/Cs8hwmp/cube.png");
+        else {
+          image = product.images.slice(0, 3).map(function(img) {
+            return img.url;
+          });
+        }
         productDiv.innerHTML = `
                 <div class="card card-action mb-4" style="height: 100%">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -214,21 +218,13 @@ $(document).ready(function () {
                         aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="${image[0]}" alt="First slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="${image[1]}" alt="Second slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="${image[2]}" alt="Third slide" />
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                      </div>
+                      ${image.map(function(img, index) {
+                        return `
+                          <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img class="d-block w-100" src="${img}" alt="Slide ${index + 1}" />
+                          </div>
+                        `;
+                      }).join('')}
                     </div>
                   </div>        
                 <div class="card-header">
@@ -236,7 +232,9 @@ $(document).ready(function () {
                     <div class="card-action-element">
                         <ul class="list-inline mb-0">
                         <li class="list-inline-item">
-                            <a href="javascript:void(0);" class="card-expand"><i class="tf-icons bx bx-fullscreen"></i></a>
+                          <p>
+                            <span class="badge badge-center rounded-pill bg-label-primary">${product.stockQuantity}</span>
+                          </p>
                         </li>
                         </ul>
                     </div>
@@ -245,7 +243,7 @@ $(document).ready(function () {
                     <span class="product-id" data-id="${product.productId}"></span>
                     <h5 class="card-text"> ${product.price.toLocaleString("vi-VN")} đ</h5>
                     <p class="card-text">${product.description}</p>
-                    <p class="card-text"><small class="text-muted">Click vào <i class="tf-icons bx bx-fullscreen"></i> để xem chi tiết.</small></p>
+                    <p class="card-text"><small class="text-muted">Số lượng đã bán: ${product.quantitySold || 0}</small></p>
                     <a onclick="addToCart(this)" id="type" type="button" class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Thêm vào giỏ hàng</a>
                     </div>
                 </div>`;

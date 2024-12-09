@@ -3,10 +3,12 @@
  */
 "use strict";
 
+
+
 (function () {
   async function getData() {
     try {
-      const response = await fetch('/call/api/customers/1');
+      const response = await fetch(ApiHost + '/api/customers/1');
       const data = await response.json();
       // console.log(data);
     } catch (error) {
