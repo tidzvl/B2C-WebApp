@@ -100,7 +100,7 @@ function addToCart(element) {
               <h5 class="card-text"> ${product.price.toLocaleString("vi-VN")} đ</h5>
               <p class="card-text">${product.description}</p>
               <p class="card-text"><small class="text-muted">Số lượng đã bán: ${product.quantitySold || 0}</small></p>
-              <a href="../product/"  class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Húp ngay kẻo lỡ!!!</a>
+              <a href="../product/"  class="btn btn-primary " style="color: white; position: absolute; bottom: 0; margin-bottom: 5%">Mua ngay kẻo lỡ!!!</a>
             </div>
         </div>`;
         productsList.appendChild(productDiv);

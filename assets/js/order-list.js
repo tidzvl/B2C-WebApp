@@ -188,7 +188,7 @@ $(function () {
               var $date;
               if (full["deliveryDate"])
                 $date = full["deliveryDate"].split("T")[0];
-              else $date = "Bình tĩnh, còn thắng được!";
+              else $date = "Đơn hàng đang được xử lý!";
 
               return (
                 '<div class="d-flex align-items-center text-nowrap">' +

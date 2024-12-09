@@ -34,32 +34,43 @@ $("#login-button").click(function (event) {
       console.error(error);
     }
   }
-
-
-  $.getJSON("/assets/json/users-list.json")
-    .then(function (data) {
-      const user_list = data.data;
-      const user = user_list.find((user) => user.email === userName);
-      // if(user &&  pwd=="tindeptrai"){
-
-      checkContain(userName).then(data => {
-        if (data) {
-          $("form").fadeOut(500);
-          $(".wrapper").addClass("form-success");
-          localStorage.setItem("logged_in", true);
-          localStorage.setItem("user_data", JSON.stringify(data));
-          console.log("Login done");
-          setTimeout(function () {
-            location.href = "../user/";
-          }, 2000);
-        } else {
-          alert("Wrong Password");
-        }
+  checkContain(userName).then(data => {
+    if (data) {
+      $("form").fadeOut(500);
+      $(".wrapper").addClass("form-success");
+      localStorage.setItem("logged_in", true);
+      localStorage.setItem("user_data", JSON.stringify(data));
+      console.log("Login done");
+      setTimeout(function () {
+        location.href = "../user/";
+      }, 2000);
+    } else {
+      // alert("Wrong Password");
+      Swal.fire({
+        title: 'Error!',
+        text: ' Tên tài khoản không hợp lệ!',
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
       })
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+    }
+  })
+
+
+  // $.getJSON("/assets/json/users-list.json")
+  //   .then(function (data) {
+
+
+
+
+
+
+    // })
+    // .catch(function (error) {
+    //   console.error(error);
+    // });
 });
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -71,43 +82,45 @@ document.addEventListener("DOMContentLoaded", function (e) {
           username: {
             validators: {
               notEmpty: {
-                message: "Please enter username",
+                message: "Hãy điền tên đăng nhập",
               },
               stringLength: {
-                min: 6,
-                message: "Username must be more than 6 characters",
+                min: 5,
+                max: 50,
+                message: "Tên đăng nhập từ 5 đến 50 ký tự",
               },
             },
           },
           email: {
             validators: {
               notEmpty: {
-                message: "Please enter your email",
+                message: "Hãy điền email",
               },
               emailAddress: {
-                message: "Please enter valid email address",
+                message: "Vui lòng điền email chính xác",
               },
             },
           },
           "email-username": {
             validators: {
               notEmpty: {
-                message: "Please enter email / username",
+                message: "Hãy điền email / số điện thoại",
               },
               stringLength: {
-                min: 6,
-                message: "Username must be more than 6 characters",
+                min: 5,
+                max: 50,
+                message: "Tên đăng nhập từ 5 đến 50 ký tự",
               },
             },
           },
           password: {
             validators: {
               notEmpty: {
-                message: "Please enter your password",
+                message: "Hãy nhập password",
               },
               stringLength: {
-                min: 6,
-                message: "Password must be more than 6 characters",
+                min: 8,
+                message: "Mật khẩu phải dài hơn 8 ký tự",
               },
             },
           },
@@ -124,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 message: "The password and its confirm are not the same",
               },
               stringLength: {
-                min: 6,
-                message: "Password must be more than 6 characters",
+                min: 8,
+                message: "Password must be more than 8 characters",
               },
             },
           },

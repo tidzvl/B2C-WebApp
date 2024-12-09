@@ -20,7 +20,7 @@ CREATE TABLE Customer (
     FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
 );
 
-CREATE TABLE Avatar (
+CREATE TABLE image (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     url VARCHAR(255),
@@ -51,6 +51,23 @@ CREATE TABLE Loyalty (
     accumulationNumber INT NOT NULL,
     CreateAt DATE NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE Cart (
+    cartId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    customer_id BIGINT NOT NULL UNIQUE,
+    totalPrice DOUBLE,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE CartItem (
+    cartItemId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cart_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    totalPrice DOUBLE NOT NULL,
+    FOREIGN KEY (cart_id) REFERENCES Cart(cartId),
+    FOREIGN KEY (product_id) REFERENCES Product(productId)
 );
 
 CREATE TABLE Invoice (
@@ -115,7 +132,7 @@ CREATE TABLE OrderDetail (
 CREATE TABLE Product (
     productId BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    description TEXT,
+    description VARCHAR(255),
     price DOUBLE NOT NULL,
     origin VARCHAR(255),
     version VARCHAR(255),
@@ -129,7 +146,7 @@ CREATE TABLE Product (
 CREATE TABLE Category (
     categoryId BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    description TEXT
+    description VARCHAR(255)
 );
 
 CREATE TABLE Discount (
@@ -157,4 +174,11 @@ CREATE TABLE ProductImage (
     FOREIGN KEY (product_id) REFERENCES Product(productId)
 );
 
-
+CREATE TABLE Payment (
+    id VARCHAR(36) PRIMARY KEY,
+    orderCode BIGINT NOT NULL,
+    amount DOUBLE NOT NULL,
+    amountRemaining DOUBLE NOT NULL,
+    createdAt DATE,
+    status VARCHAR(50)
+);

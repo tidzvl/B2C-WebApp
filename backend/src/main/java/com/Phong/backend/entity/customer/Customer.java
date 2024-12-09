@@ -41,12 +41,10 @@ public class Customer {
     Long customerId;
 
     @NotBlank(message = "First name cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "First name must contain only letters and spaces")
     @Column(name = "FirstName")
     String firstName;
 
     @NotBlank(message = "Last name cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Last name must contain only letters and spaces")
     @Column(name = "LastName")
     String lastName;
 

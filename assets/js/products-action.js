@@ -106,13 +106,16 @@ $(document).ready(function () {
     /** TODO */
     if(brand == "Brand") brand = "";
     if(os == "OS") os = "";
-    if(price == "fade" || to < 0) to = "";
-    else if (price == "before-1m") to = 1000000;
-    else if (price == "before-5m") to = 5000000;
-    else if (price == "before-10m") to = 10000000;
-    else if (price == "before-15m") to = 15000000;
-    else if (price == "before-20m") to = 20000000;
-    else if (price == "before-100m") to = 100000000;
+    if(to > 0) to = to;
+    else{
+      if(price == "fade") to = "";
+      else if (price == "before-1m") to = 1000000;
+      else if (price == "before-5m") to = 5000000;
+      else if (price == "before-10m") to = 10000000;
+      else if (price == "before-15m") to = 15000000;
+      else if (price == "before-20m") to = 20000000;
+      else if (price == "before-100m") to = 100000000;
+    }
     var category = localStorage.getItem("menuItemSelected");
     if(category == "Điện thoại") category = "Phone";
     else if(category == "Máy tính") category = "Laptop";

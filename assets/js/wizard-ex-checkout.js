@@ -290,10 +290,21 @@ setTimeout(function () {
             }
           });
         }else{
-          document.querySelector(".loading-payment-ifame").src = "https://i.ibb.co/KDKxFdn/hetvip.png"
+          document.querySelector(".loading-payment-ifame").src = "https://i.ibb.co/DLQnN5r/page-misc-error-light.png"
               document
                 .querySelector(".loading-payment")
                 .classList.add("d-none");
+                Swal.fire({
+                  title: "Oh no! 😢",
+                  text: "Giỏ hàng của bạn chưa có gì cả. Đến ngay với thiên đường mua sắm nào!",
+                  icon: "info",
+                  customClass: {
+                    confirmButton: "btn btn-primary",
+                  },
+                  buttonsStyling: false,
+                }).then(function (result) {
+                    window.location.href = "../product/";
+                });
         }
       });
     });
@@ -301,15 +312,61 @@ setTimeout(function () {
   document
     .querySelector(".check-done")
     .addEventListener("click", function (event) {
+      var content = document.querySelector('.end-content');
       CheckPayment().then((data) => {
-        if (data.message == "ok") {
+        $(".modal-content").block({
+          message:
+            '<div class="sk-wave sk-primary mx-auto"><div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div></div>',
+          timeout: 10000,
+          css: {
+            backgroundColor: "transparent",
+            border: "0"
+          },
+          overlayCSS: {
+            backgroundColor: "#fff",
+            opacity: 0.8
+          }
+        });
+        console.log(data);
+        if (data.data.status == "PAID") { //PAID
+          $(".modal-content").unblock();
           // console.log("Thanh toán thanh cong");
           document.querySelector(".loading-payment-ifame").src =
-            "https://i.ibb.co/4J2R4BN/vippro.png";
+            "https://i.ibb.co/68Qf4vC/image.png";
+          Swal.fire({
+            title: "Thành công! 😇",
+            text: "Bạn đã thanh toán thành công đơn hàng, chúc bạn một ngày tốt lành!",
+            icon: "success",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+            buttonsStyling: false,
+          });
           document.querySelector(".endgame").classList.remove("d-none");
           localStorage.removeItem("order_id");
+          //Success noti
+          content.querySelector('.spin-content').classList.add('d-none');
+          content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
+          content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+          var email = JSON.parse(localStorage.getItem("user_data")).email;
+          content.querySelector('.noti-content').innerHTML = `
+                                                    Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
+                                                    bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
+                                                    hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
+                                                    là
+                                                    bài học đầu đời.`;
+          //
         } else {
-          console.log(data.message);
+          $(".modal-content").unblock();
+          Swal.fire({
+            title: "Oh no! 😢",
+            text: "Thanh toán chưa thành công, vui lòng thử lại!",
+            icon: "info",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+            buttonsStyling: false,
+          });
         }
       });
     });
@@ -569,7 +626,7 @@ $(function () {
     });
     //--!loop
     document.querySelector(".spinner-border").setAttribute("hidden", "true");
-    $(".layout-wrapper").unblock();
+    // $(".layout-wrapper").unblock();
   });
   //--!end gio hang
 

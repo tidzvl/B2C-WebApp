@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
           AcreateAccount(createAccount).then((result) => {
             if (result.message == "Account created successfully") {
               var customerInfo = {
-                accountId: result.id,
+                accountId: result.result.id,
                 firstName: stepsValidation.querySelector("#multiStepsFirstName")
                   .value,
                 lastName: stepsValidation.querySelector("#multiStepsLastName")
@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                   ).value,
                 avatar: "https://i.ibb.co/g3gSyKF/user-success.png",
               };
+              console.log(customerInfo);
               createCustomer(customerInfo).then((result) => {
                 // console.log(result);
                 if (result.code == 1000) {
@@ -222,42 +223,46 @@ document.addEventListener("DOMContentLoaded", function (e) {
             multiStepsUsername: {
               validators: {
                 notEmpty: {
-                  message: "Please enter username",
+                  message: "Hãy điền tên đăng nhập",
                 },
                 stringLength: {
-                  min: 6,
-                  max: 30,
+                  min: 5,
+                  max: 50,
                   message:
-                    "The name must be more than 6 and less than 30 characters long",
+                    "Tên đăng nhập phải nằm trong khoảng 5 đến 50 ký tự",
                 },
                 regexp: {
                   regexp: /^[a-zA-Z0-9 ]+$/,
                   message:
-                    "The name can only consist of alphabetical, number and space",
+                    "Tên không được chứa ký tự đặc biệt",
                 },
               },
             },
             multiStepsEmail: {
               validators: {
                 notEmpty: {
-                  message: "Please enter email address",
+                  message: "Hãy điền email",
                 },
                 emailAddress: {
-                  message: "The value is not a valid email address",
+                  message: "Định dạng email không đúng",
                 },
               },
             },
             multiStepsPass: {
               validators: {
                 notEmpty: {
-                  message: "Please enter password",
+                  message: "Hãy nhập mật khẩu",
+                },stringLength: {
+                  min: 8,
+                  message:
+                    "Mật khẩu phải dài hơn 8 ký tự",
                 },
               },
             },
             multiStepsConfirmPass: {
               validators: {
                 notEmpty: {
-                  message: "Confirm Password is required",
+                  message: "Hãy nhập lại mật khẩu",
                 },
                 identical: {
                   compare: function () {
@@ -265,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                       '[name="multiStepsPass"]'
                     ).value;
                   },
-                  message: "The password and its confirm are not the same",
+                  message: "Mật khẩu và xác nhận mật khẩu không trùng khớp",
                 },
               },
             },
