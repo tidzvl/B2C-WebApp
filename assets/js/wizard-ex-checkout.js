@@ -27,34 +27,42 @@ $(function () {
     timeout: 3000,
     css: {
       backgroundColor: "transparent",
-      border: "0"
+      border: "0",
     },
     overlayCSS: {
       backgroundColor: "#fff",
-      opacity: 0.8
-    }
-  })
-})
-
+      opacity: 0.8,
+    },
+  });
+});
 
 setTimeout(function () {
-
-  function calcNewPrice(){
-    try{
-      var qty_price = document.querySelectorAll('.qty-price');
+  function calcNewPrice() {
+    try {
+      var qty_price = document.querySelectorAll(".qty-price");
       console.log(qty_price);
       var totalPrice = 0;
-      var discount = document.querySelector('.total-discount').innerHTML.split(' ')[0].replaceAll('.','');
+      var discount = document
+        .querySelector(".total-discount")
+        .innerHTML.split(" ")[0]
+        .replaceAll(".", "");
       qty_price.forEach((item) => {
-        var product_price = item.querySelector('.price-product').innerHTML.split(' ')[0].replaceAll('.','');
-        var product_qty = item.querySelector('.qty-product').value;
+        var product_price = item
+          .querySelector(".price-product")
+          .innerHTML.split(" ")[0]
+          .replaceAll(".", "");
+        var product_qty = item.querySelector(".qty-product").value;
         totalPrice += parseInt(product_price) * parseInt(product_qty);
-      })
-      $('.total-price').html(totalPrice.toLocaleString('vi-VN') + ' VNĐ');
+      });
+      $(".total-price").html(totalPrice.toLocaleString("vi-VN") + " VNĐ");
       var price_been_discount = totalPrice - parseInt(discount);
-      $('.total-all').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
-      $('.total-pay').html(price_been_discount.toLocaleString('vi-VN') + ' VNĐ');
-    }catch(error){
+      $(".total-all").html(
+        price_been_discount.toLocaleString("vi-VN") + " VNĐ"
+      );
+      $(".total-pay").html(
+        price_been_discount.toLocaleString("vi-VN") + " VNĐ"
+      );
+    } catch (error) {
       console.log(error);
     }
   }
@@ -64,7 +72,8 @@ setTimeout(function () {
       var customerId = JSON.parse(localStorage.getItem("user_data")).customerId;
       calcNewPrice();
       const response = await fetch(
-        ApiHost+"/api/cart/quantity?cartId=" +
+        ApiHost +
+          "/api/cart/quantity?cartId=" +
           customerId +
           "&productId=" +
           productId,
@@ -193,11 +202,13 @@ setTimeout(function () {
   async function createOrder() {
     try {
       // console.log(document.querySelector(".final-address").id);
-      if(document.querySelector(".final-address").id == "final-address"){
-        var addId = parseInt(JSON.parse(localStorage.getItem("allAddress"))[0].id);
-      }else addId = parseInt(document.querySelector(".final-address").id)
+      if (document.querySelector(".final-address").id == "final-address") {
+        var addId = parseInt(
+          JSON.parse(localStorage.getItem("allAddress"))[0].id
+        );
+      } else addId = parseInt(document.querySelector(".final-address").id);
       // console.log(JSON.parse(localStorage.getItem("CartAndDiscount")));
-      const response = await fetch(ApiHost+"/api/order/create", {
+      const response = await fetch(ApiHost + "/api/order/create", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -219,7 +230,7 @@ setTimeout(function () {
   async function createPayment(orderid) {
     try {
       const response = await fetch(
-        ApiHost+"/api/payment/create?orderId=" + orderid,
+        ApiHost + "/api/payment/create?orderId=" + orderid,
         {
           method: "POST",
           headers: {
@@ -235,18 +246,15 @@ setTimeout(function () {
 
   async function createInvoice(orderid) {
     try {
-      const response = await fetch(
-        ApiHost+"/api/invoice",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-          body: JSON.stringify({
-            orderId: orderid,
-          }),
-        }
-      );
+      const response = await fetch(ApiHost + "/api/invoice", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({
+          orderId: orderid,
+        }),
+      });
       localStorage.removeItem("order_id");
       return response.json();
     } catch (error) {
@@ -259,7 +267,7 @@ setTimeout(function () {
       var orderCode = parseInt(localStorage.getItem("orderCode"));
       var orderid = localStorage.getItem("order_id");
       const response = await fetch(
-        ApiHost+"/api/payment?orderCode=" + orderCode + "&orderId=" + orderid
+        ApiHost + "/api/payment?orderCode=" + orderCode + "&orderId=" + orderid
       );
       return response.json();
     } catch (error) {
@@ -289,22 +297,21 @@ setTimeout(function () {
               localStorage.setItem("orderCode", data.data.orderCode);
             }
           });
-        }else{
-          document.querySelector(".loading-payment-ifame").src = "https://i.ibb.co/DLQnN5r/page-misc-error-light.png"
-              document
-                .querySelector(".loading-payment")
-                .classList.add("d-none");
-                Swal.fire({
-                  title: "Oh no! 😢",
-                  text: "Giỏ hàng của bạn chưa có gì cả. Đến ngay với thiên đường mua sắm nào!",
-                  icon: "info",
-                  customClass: {
-                    confirmButton: "btn btn-primary",
-                  },
-                  buttonsStyling: false,
-                }).then(function (result) {
-                    window.location.href = "../product/";
-                });
+        } else {
+          document.querySelector(".loading-payment-ifame").src =
+            "https://i.ibb.co/DLQnN5r/page-misc-error-light.png";
+          document.querySelector(".loading-payment").classList.add("d-none");
+          Swal.fire({
+            title: "Oh no! 😢",
+            text: "Giỏ hàng của bạn chưa có gì cả. Đến ngay với thiên đường mua sắm nào!",
+            icon: "info",
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+            buttonsStyling: false,
+          }).then(function (result) {
+            window.location.href = "../product/";
+          });
         }
       });
     });
@@ -312,7 +319,7 @@ setTimeout(function () {
   document
     .querySelector(".check-done")
     .addEventListener("click", function (event) {
-      var content = document.querySelector('.end-content');
+      var content = document.querySelector(".end-content");
       CheckPayment().then((data) => {
         $(".modal-content").block({
           message:
@@ -320,15 +327,16 @@ setTimeout(function () {
           timeout: 10000,
           css: {
             backgroundColor: "transparent",
-            border: "0"
+            border: "0",
           },
           overlayCSS: {
             backgroundColor: "#fff",
-            opacity: 0.8
-          }
+            opacity: 0.8,
+          },
         });
         console.log(data);
-        if (data.data.status == "PAID") { //PAID
+        if (data.data.status == "PAID") {
+          //PAID
           $(".modal-content").unblock();
           // console.log("Thanh toán thanh cong");
           document.querySelector(".loading-payment-ifame").src =
@@ -345,11 +353,12 @@ setTimeout(function () {
           document.querySelector(".endgame").classList.remove("d-none");
           localStorage.removeItem("order_id");
           //Success noti
-          content.querySelector('.spin-content').classList.add('d-none');
-          content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
-          content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+          content.querySelector(".spin-content").classList.add("d-none");
+          content.querySelector(".noti-title").innerHTML = "Thank You! 😇";
+          content.querySelector(".noti-sub-title").innerHTML =
+            "Đơn hàng của bạn đã được tạo!";
           var email = JSON.parse(localStorage.getItem("user_data")).email;
-          content.querySelector('.noti-content').innerHTML = `
+          content.querySelector(".noti-content").innerHTML = `
                                                     Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
                                                     bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
                                                     hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
@@ -375,16 +384,17 @@ setTimeout(function () {
     .querySelector(".pay-cod")
     .addEventListener("click", function (event) {
       var order_id = localStorage.getItem("order_id");
-      var content = document.querySelector('.end-content');
-      if(order_id){
+      var content = document.querySelector(".end-content");
+      if (order_id) {
         createInvoice(order_id).then((data) => {
           console.log(data);
           //Success noti
-          content.querySelector('.spin-content').classList.add('d-none');
-          content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
-          content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+          content.querySelector(".spin-content").classList.add("d-none");
+          content.querySelector(".noti-title").innerHTML = "Thank You! 😇";
+          content.querySelector(".noti-sub-title").innerHTML =
+            "Đơn hàng của bạn đã được tạo!";
           var email = JSON.parse(localStorage.getItem("user_data")).email;
-          content.querySelector('.noti-content').innerHTML = `
+          content.querySelector(".noti-content").innerHTML = `
                                                     Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
                                                     bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
                                                     hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
@@ -392,17 +402,18 @@ setTimeout(function () {
                                                     bài học đầu đời.`;
           //
         });
-      }else{
+      } else {
         console.log("Chua tao don hang");
         createOrder().then((data) => {
           console.log(data);
           if (data.message == "Order created successfully") {
             //Success noti
-            content.querySelector('.spin-content').classList.add('d-none');
-            content.querySelector('.noti-title').innerHTML = "Thank You! 😇";
-            content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn đã được tạo!";
+            content.querySelector(".spin-content").classList.add("d-none");
+            content.querySelector(".noti-title").innerHTML = "Thank You! 😇";
+            content.querySelector(".noti-sub-title").innerHTML =
+              "Đơn hàng của bạn đã được tạo!";
             var email = JSON.parse(localStorage.getItem("user_data")).email;
-            content.querySelector('.noti-content').innerHTML = `
+            content.querySelector(".noti-content").innerHTML = `
                                                       Chúng tôi sẽ gửi email xác nhận đến <a class="email">${email}</a> để
                                                       bạn chấp nhận đơn hàng. Mọi chi phí bạn đều phải trả và không được
                                                       hoàn tiền dưới mọi hình thức. Nếu đơn hàng có vấn đề gì, hãy xem nó
@@ -414,14 +425,17 @@ setTimeout(function () {
             createInvoice(orderid).then((data) => {
               console.log(data);
             });
-          }else if(data.message == "Error creating order: No items selected for order") {
+          } else if (
+            data.message == "Error creating order: No items selected for order"
+          ) {
             //Fail noti
-            content.querySelector('.spin-content').classList.add('d-none');
-            content.querySelector('.noti-title').innerHTML = "OH NOOOOO! 😢";
-            content.querySelector('.noti-sub-title').innerHTML = "Đơn hàng của bạn chưa có gì trong đó mà!!!";
-            content.querySelector('.noti-content').innerHTML = `
+            content.querySelector(".spin-content").classList.add("d-none");
+            content.querySelector(".noti-title").innerHTML = "OH NOOOOO! 😢";
+            content.querySelector(".noti-sub-title").innerHTML =
+              "Đơn hàng của bạn chưa có gì trong đó mà!!!";
+            content.querySelector(".noti-content").innerHTML = `
               Hãy truy cập vào <a href="../product/">đây</a> để lựa chọn sản phẩm phù hợp với mình bạn nhé!
-            `
+            `;
             //
           }
         });
@@ -434,7 +448,7 @@ $(function () {
   async function getData(customerId) {
     try {
       const response = await fetch(
-        ApiHost+"/api/cart/allItems?customerId=" + customerId
+        ApiHost + "/api/cart/allItems?customerId=" + customerId
       );
       const data = await response.json();
       // console.log(data);
@@ -445,7 +459,7 @@ $(function () {
   }
   async function getProducts(id) {
     try {
-      const response = await fetch(ApiHost+"/api/products/" + id);
+      const response = await fetch(ApiHost + "/api/products/" + id);
       const data = await response.json();
       // console.log(data);
       return data;
@@ -455,7 +469,7 @@ $(function () {
   }
   async function getDiscount() {
     try {
-      const response = await fetch(ApiHost+"/api/discounts/all");
+      const response = await fetch(ApiHost + "/api/discounts/all");
       const data = await response.json();
       // console.log(data);
       return data;
